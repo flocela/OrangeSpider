@@ -1,0 +1,483 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		5C1766462DA8481000BE1892 /* libvulkan.1.3.283.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 5C1766452DA8481000BE1892 /* libvulkan.1.3.283.dylib */; };
+		5C1766482DA8481800BE1892 /* libvulkan.1.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 5C1766472DA8481800BE1892 /* libvulkan.1.dylib */; };
+		5C17664A2DA8482400BE1892 /* libglfw.3.4.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 5C1766492DA8482400BE1892 /* libglfw.3.4.dylib */; };
+		5C17664C2DA848D900BE1892 /* libglfw.3.4.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5C17664B2DA848D900BE1892 /* libglfw.3.4.dylib */; };
+		5C17664E2DA848F400BE1892 /* libvulkan.1.3.283.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5C17664D2DA848F400BE1892 /* libvulkan.1.3.283.dylib */; };
+		5C1766502DA848FF00BE1892 /* libvulkan.1.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5C17664F2DA848FE00BE1892 /* libvulkan.1.dylib */; };
+		5C9A13232DF7BB6300255D96 /* OrangeSpider.xctestplan in Resources */ = {isa = PBXBuildFile; fileRef = 5C9A13222DF7BB6300255D96 /* OrangeSpider.xctestplan */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		5C1766762DA856F400BE1892 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5C1766252DA8418B00BE1892 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 5C17663A2DA8439900BE1892;
+			remoteInfo = TestsOrangeSpider;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		5C17662B2DA8418B00BE1892 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 12;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				5C1766502DA848FF00BE1892 /* libvulkan.1.dylib in CopyFiles */,
+				5C17664C2DA848D900BE1892 /* libglfw.3.4.dylib in CopyFiles */,
+				5C17664E2DA848F400BE1892 /* libvulkan.1.3.283.dylib in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		5C17662D2DA8418B00BE1892 /* OrangeSpider */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = OrangeSpider; sourceTree = BUILT_PRODUCTS_DIR; };
+		5C17663B2DA8439900BE1892 /* TestsOrangeSpider.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TestsOrangeSpider.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		5C1766452DA8481000BE1892 /* libvulkan.1.3.283.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libvulkan.1.3.283.dylib; path = ../../../../../../Applications/Development/VulkanSDK/macOS/lib/libvulkan.1.3.283.dylib; sourceTree = "<group>"; };
+		5C1766472DA8481800BE1892 /* libvulkan.1.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libvulkan.1.dylib; path = ../../../../../../Applications/Development/VulkanSDK/macOS/lib/libvulkan.1.dylib; sourceTree = "<group>"; };
+		5C1766492DA8482400BE1892 /* libglfw.3.4.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libglfw.3.4.dylib; path = ../../../../../../opt/homebrew/lib/libglfw.3.4.dylib; sourceTree = "<group>"; };
+		5C17664B2DA848D900BE1892 /* libglfw.3.4.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libglfw.3.4.dylib; path = ../../../../../../opt/homebrew/lib/libglfw.3.4.dylib; sourceTree = "<group>"; };
+		5C17664D2DA848F400BE1892 /* libvulkan.1.3.283.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libvulkan.1.3.283.dylib; path = ../../../../../../Applications/Development/VulkanSDK/macOS/lib/libvulkan.1.3.283.dylib; sourceTree = "<group>"; };
+		5C17664F2DA848FE00BE1892 /* libvulkan.1.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libvulkan.1.dylib; path = ../../../../../../Applications/Development/VulkanSDK/macOS/lib/libvulkan.1.dylib; sourceTree = "<group>"; };
+		5C9A13222DF7BB6300255D96 /* OrangeSpider.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = OrangeSpider.xctestplan; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		5C1766662DA84F1800BE1892 /* Exceptions for "OrangeSpider" folder in "TestsOrangeSpider" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Adder.cpp,
+			);
+			target = 5C17663A2DA8439900BE1892 /* TestsOrangeSpider */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		5C17662F2DA8418B00BE1892 /* OrangeSpider */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				5C1766662DA84F1800BE1892 /* Exceptions for "OrangeSpider" folder in "TestsOrangeSpider" target */,
+			);
+			path = OrangeSpider;
+			sourceTree = "<group>";
+		};
+		5C17663C2DA8439900BE1892 /* TestsOrangeSpider */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = TestsOrangeSpider;
+			sourceTree = "<group>";
+		};
+/* End PBXFileSystemSynchronizedRootGroup section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		5C17662A2DA8418B00BE1892 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5C1766462DA8481000BE1892 /* libvulkan.1.3.283.dylib in Frameworks */,
+				5C1766482DA8481800BE1892 /* libvulkan.1.dylib in Frameworks */,
+				5C17664A2DA8482400BE1892 /* libglfw.3.4.dylib in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5C1766382DA8439900BE1892 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		5C1766242DA8418B00BE1892 = {
+			isa = PBXGroup;
+			children = (
+				5C9A13222DF7BB6300255D96 /* OrangeSpider.xctestplan */,
+				5C17664F2DA848FE00BE1892 /* libvulkan.1.dylib */,
+				5C17664D2DA848F400BE1892 /* libvulkan.1.3.283.dylib */,
+				5C17664B2DA848D900BE1892 /* libglfw.3.4.dylib */,
+				5C17662F2DA8418B00BE1892 /* OrangeSpider */,
+				5C17663C2DA8439900BE1892 /* TestsOrangeSpider */,
+				5C1766442DA8481000BE1892 /* Frameworks */,
+				5C17662E2DA8418B00BE1892 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		5C17662E2DA8418B00BE1892 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				5C17662D2DA8418B00BE1892 /* OrangeSpider */,
+				5C17663B2DA8439900BE1892 /* TestsOrangeSpider.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		5C1766442DA8481000BE1892 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				5C1766492DA8482400BE1892 /* libglfw.3.4.dylib */,
+				5C1766472DA8481800BE1892 /* libvulkan.1.dylib */,
+				5C1766452DA8481000BE1892 /* libvulkan.1.3.283.dylib */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		5C17662C2DA8418B00BE1892 /* OrangeSpider */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5C1766342DA8418B00BE1892 /* Build configuration list for PBXNativeTarget "OrangeSpider" */;
+			buildPhases = (
+				5C1766292DA8418B00BE1892 /* Sources */,
+				5C17662A2DA8418B00BE1892 /* Frameworks */,
+				5C17662B2DA8418B00BE1892 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				5C1766772DA856F400BE1892 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				5C17662F2DA8418B00BE1892 /* OrangeSpider */,
+			);
+			name = OrangeSpider;
+			packageProductDependencies = (
+			);
+			productName = OrangeSpider;
+			productReference = 5C17662D2DA8418B00BE1892 /* OrangeSpider */;
+			productType = "com.apple.product-type.tool";
+		};
+		5C17663A2DA8439900BE1892 /* TestsOrangeSpider */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5C17663F2DA8439900BE1892 /* Build configuration list for PBXNativeTarget "TestsOrangeSpider" */;
+			buildPhases = (
+				5C1766372DA8439900BE1892 /* Sources */,
+				5C1766382DA8439900BE1892 /* Frameworks */,
+				5C1766392DA8439900BE1892 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				5C17663C2DA8439900BE1892 /* TestsOrangeSpider */,
+			);
+			name = TestsOrangeSpider;
+			packageProductDependencies = (
+			);
+			productName = TestsOrangeSpider;
+			productReference = 5C17663B2DA8439900BE1892 /* TestsOrangeSpider.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		5C1766252DA8418B00BE1892 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastUpgradeCheck = 1630;
+				TargetAttributes = {
+					5C17662C2DA8418B00BE1892 = {
+						CreatedOnToolsVersion = 16.3;
+					};
+					5C17663A2DA8439900BE1892 = {
+						CreatedOnToolsVersion = 16.3;
+					};
+				};
+			};
+			buildConfigurationList = 5C1766282DA8418B00BE1892 /* Build configuration list for PBXProject "OrangeSpider" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 5C1766242DA8418B00BE1892;
+			minimizedProjectReferenceProxies = 1;
+			preferredProjectObjectVersion = 77;
+			productRefGroup = 5C17662E2DA8418B00BE1892 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				5C17662C2DA8418B00BE1892 /* OrangeSpider */,
+				5C17663A2DA8439900BE1892 /* TestsOrangeSpider */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		5C1766392DA8439900BE1892 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5C9A13232DF7BB6300255D96 /* OrangeSpider.xctestplan in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		5C1766292DA8418B00BE1892 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5C1766372DA8439900BE1892 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		5C1766772DA856F400BE1892 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 5C17663A2DA8439900BE1892 /* TestsOrangeSpider */;
+			targetProxy = 5C1766762DA856F400BE1892 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		5C1766322DA8418B00BE1892 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MACOSX_DEPLOYMENT_TARGET = 15.3;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		5C1766332DA8418B00BE1892 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MACOSX_DEPLOYMENT_TARGET = 15.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		5C1766352DA8418B00BE1892 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				HEADER_SEARCH_PATHS = (
+					/opt/homebrew/include/,
+					/Applications/Development/VulkanSDK/macOS/include,
+					/Applications/libs/,
+				);
+				"HEADER_SEARCH_PATHS[arch=*]" = (
+					/Applications/Development/VulkanSDK/macOS/include,
+					/opt/homebrew/include,
+					/Applications/libs/,
+				);
+				LIBRARY_SEARCH_PATHS = (
+					/Applications/Development/VulkanSDK/macOS/lib,
+					/opt/homebrew/lib,
+					/Applications/libs/,
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		5C1766362DA8418B00BE1892 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				HEADER_SEARCH_PATHS = (
+					/opt/homebrew/include,
+					/Applications/Development/VulkanSDK/macOS/include/,
+					/Applications/libs/,
+				);
+				"HEADER_SEARCH_PATHS[arch=*]" = (
+					/opt/homebrew/include,
+					/Applications/Development/VulkanSDK/macOS/include/,
+					/Applications/libs/,
+				);
+				LIBRARY_SEARCH_PATHS = (
+					/Applications/Development/VulkanSDK/macOS/lib,
+					/opt/homebrew/lib,
+					/Applications/libs/,
+				);
+				"LIBRARY_SEARCH_PATHS[arch=*]" = (
+					/Applications/Development/VulkanSDK/macOS/lib,
+					/opt/homebrew/lib,
+					/Applications/libs/,
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		5C1766402DA8439900BE1892 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = workVestCoding.TestsOrangeSpider;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+			};
+			name = Debug;
+		};
+		5C1766412DA8439900BE1892 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = workVestCoding.TestsOrangeSpider;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		5C1766282DA8418B00BE1892 /* Build configuration list for PBXProject "OrangeSpider" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5C1766322DA8418B00BE1892 /* Debug */,
+				5C1766332DA8418B00BE1892 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		5C1766342DA8418B00BE1892 /* Build configuration list for PBXNativeTarget "OrangeSpider" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5C1766352DA8418B00BE1892 /* Debug */,
+				5C1766362DA8418B00BE1892 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		5C17663F2DA8439900BE1892 /* Build configuration list for PBXNativeTarget "TestsOrangeSpider" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5C1766402DA8439900BE1892 /* Debug */,
+				5C1766412DA8439900BE1892 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 5C1766252DA8418B00BE1892 /* Project object */;
+}

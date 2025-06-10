@@ -1,0 +1,39 @@
+{
+  "configurations" : [
+    {
+      "id" : "36ED6D7F-9F2D-465C-AF49-86D1E3B8A55F",
+      "name" : "Test Scheme Action",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "codeCoverage" : false,
+    "environmentVariableEntries" : [
+      {
+        "key" : "VK_LAYER_PATH",
+        "value" : "\/Applications\/Development\/VulkanSDK\/macOS\/share\/vulkan\/explicit_layer.d"
+      },
+      {
+        "key" : "VK_ICD_FILENAMES",
+        "value" : "\/Applications\/Development\/VulkanSDK\/macOS\/share\/vulkan\/icd.d\/MoltenVK_icd.json"
+      }
+    ],
+    "targetForVariableExpansion" : {
+      "containerPath" : "container:OrangeSpider.xcodeproj",
+      "identifier" : "5C17662C2DA8418B00BE1892",
+      "name" : "OrangeSpider"
+    }
+  },
+  "testTargets" : [
+    {
+      "target" : {
+        "containerPath" : "container:OrangeSpider.xcodeproj",
+        "identifier" : "5C17663A2DA8439900BE1892",
+        "name" : "TestsOrangeSpider"
+      }
+    }
+  ],
+  "version" : 1
+}
