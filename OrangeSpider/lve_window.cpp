@@ -1,4 +1,5 @@
 //#include <stdio.h>
+#include <iostream>
 #include "lve_window.hpp"
 
 namespace lve
@@ -14,13 +15,14 @@ namespace lve
         glfwDestroyWindow(window);
         glfwTerminate();
     }
-    
+
     void LveWindow::initWindow()
     {
         glfwInit();
         glfwWindowHint(GLFW_CLIENT_API, GLFW_NO_API);
         glfwWindowHint(GLFW_RESIZABLE, GLFW_FALSE);
         
+        std::cout << "create window" << std::endl;
         window = glfwCreateWindow(width, height, windowName.c_str(), nullptr, nullptr);
     }
 
