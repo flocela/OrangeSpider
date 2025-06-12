@@ -13,7 +13,6 @@
 		5C17664C2DA848D900BE1892 /* libglfw.3.4.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5C17664B2DA848D900BE1892 /* libglfw.3.4.dylib */; };
 		5C17664E2DA848F400BE1892 /* libvulkan.1.3.283.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5C17664D2DA848F400BE1892 /* libvulkan.1.3.283.dylib */; };
 		5C1766502DA848FF00BE1892 /* libvulkan.1.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5C17664F2DA848FE00BE1892 /* libvulkan.1.dylib */; };
-		5C9A13232DF7BB6300255D96 /* OrangeSpider.xctestplan in Resources */ = {isa = PBXBuildFile; fileRef = 5C9A13222DF7BB6300255D96 /* OrangeSpider.xctestplan */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -50,7 +49,6 @@
 		5C17664B2DA848D900BE1892 /* libglfw.3.4.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libglfw.3.4.dylib; path = ../../../../../../opt/homebrew/lib/libglfw.3.4.dylib; sourceTree = "<group>"; };
 		5C17664D2DA848F400BE1892 /* libvulkan.1.3.283.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libvulkan.1.3.283.dylib; path = ../../../../../../Applications/Development/VulkanSDK/macOS/lib/libvulkan.1.3.283.dylib; sourceTree = "<group>"; };
 		5C17664F2DA848FE00BE1892 /* libvulkan.1.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libvulkan.1.dylib; path = ../../../../../../Applications/Development/VulkanSDK/macOS/lib/libvulkan.1.dylib; sourceTree = "<group>"; };
-		5C9A13222DF7BB6300255D96 /* OrangeSpider.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = OrangeSpider.xctestplan; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -103,7 +101,6 @@
 		5C1766242DA8418B00BE1892 = {
 			isa = PBXGroup;
 			children = (
-				5C9A13222DF7BB6300255D96 /* OrangeSpider.xctestplan */,
 				5C17664F2DA848FE00BE1892 /* libvulkan.1.dylib */,
 				5C17664D2DA848F400BE1892 /* libvulkan.1.3.283.dylib */,
 				5C17664B2DA848D900BE1892 /* libglfw.3.4.dylib */,
@@ -223,7 +220,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5C9A13232DF7BB6300255D96 /* OrangeSpider.xctestplan in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
