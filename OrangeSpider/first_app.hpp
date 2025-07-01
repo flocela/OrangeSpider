@@ -3,6 +3,7 @@
 
 //#include <stdio.h>
 #include "lve_window.hpp"
+#include "lve_pipeline.hpp"
 
 namespace lve
 {
@@ -18,6 +19,8 @@ namespace lve
         private:
         
         LveWindow lveWindow{WIDTH, HEIGHT, "Hello Vulkan!"};
+        LvePipeline lvePipeline{"/Users/flo/LocalDocuments/Projects/VulkanLearning/OrangeSpider/OrangeSpider/shaders/simple_shader.vert.spv",
+            "/Users/flo/LocalDocuments/Projects/VulkanLearning/OrangeSpider/OrangeSpider/shaders/simple_shader.frag.spv"};
     };
 }
 

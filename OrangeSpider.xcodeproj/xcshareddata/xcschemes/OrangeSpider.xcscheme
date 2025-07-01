@@ -30,7 +30,10 @@
       shouldUseLaunchSchemeArgsEnv = "YES">
       <TestPlans>
          <TestPlanReference
-            reference = "container:OrangeSpider.xctestplan"
+            reference = "container:OrangeSpider.xctestplan">
+         </TestPlanReference>
+         <TestPlanReference
+            reference = "container:TestsOrangeSpider/OrangeSpider.xctestplan"
             default = "YES">
          </TestPlanReference>
       </TestPlans>
