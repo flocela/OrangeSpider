@@ -1,7 +1,7 @@
 //#include <stdio.h>
-#include <iostream>
 #include "lve_window.hpp"
-
+#include <stdexcept>
+//
 namespace lve
 {
 //
@@ -9,7 +9,7 @@ namespace lve
     {
         initWindow();
     }
-    
+
     LveWindow::~LveWindow()
     {
         glfwDestroyWindow(window);
@@ -22,13 +22,25 @@ namespace lve
         glfwWindowHint(GLFW_CLIENT_API, GLFW_NO_API);
         glfwWindowHint(GLFW_RESIZABLE, GLFW_FALSE);
         
-        std::cout << "create window" << std::endl;
         window = glfwCreateWindow(width, height, windowName.c_str(), nullptr, nullptr);
     }
 
     bool LveWindow::shouldClose()
     {
         return glfwWindowShouldClose(window);
+    }
+
+    void LveWindow::createWindowSurface(VkInstance instance, VkSurfaceKHR* surface)
+    {
+        if(glfwCreateWindowSurface(instance, window, nullptr, surface) != VK_SUCCESS)
+        {
+            throw std::runtime_error("failed to create window surface");
+        }
+    }
+    
+    VkExtent2D LveWindow::getExtent()
+    {
+        return {static_cast<uint32_t>(width), static_cast<uint32_t>(height)};
     }
 
 }
