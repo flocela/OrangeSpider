@@ -14,3 +14,15 @@ float SpHeadAnatomy::getRadius()
 {
     return _radius;
 }
+
+bool SpHeadAnatomy::operator== (const SpHeadAnatomy& o) const
+{
+    if (this == &o)
+    {
+        return true;
+    }
+    
+    return ( _height == o._height ) &&
+           ( _radius == o._radius );
+    
+}

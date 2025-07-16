@@ -26,6 +26,17 @@
     XCTAssertEqual(33.0f, spiderHead.getRadius());
 }
 
+- (void)testEqualityOperator_1 {
+    SpHeadAnatomy spiderHeadA{12, 33};
+    SpHeadAnatomy spiderHeadB{12, 33};
+    XCTAssertTrue(spiderHeadA == spiderHeadB);
+}
+
+- (void)testEqualityOperator_2 {
+    SpHeadAnatomy spiderHeadA{12, 33};
+    XCTAssertTrue(spiderHeadA == spiderHeadA);
+}
+
 - (void)testPerformanceExample {
     // This is an example of a performance test case.
     [self measureBlock:^{

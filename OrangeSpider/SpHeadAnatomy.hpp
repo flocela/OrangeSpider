@@ -7,6 +7,7 @@ class SpHeadAnatomy
     public:
     
     SpHeadAnatomy(float height, float radius);
+    bool operator== (const SpHeadAnatomy& o) const;
     
     float getHeight();
     float getRadius();
