@@ -57,6 +57,7 @@
 			membershipExceptions = (
 				Adder.cpp,
 				SpLegAnatomy.cpp,
+				SpLegAngles.cpp,
 			);
 			target = 5C17663A2DA8439900BE1892 /* TestsOrangeSpider */;
 		};
