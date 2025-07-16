@@ -56,6 +56,7 @@
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				Adder.cpp,
+				SpLegAnatomy.cpp,
 			);
 			target = 5C17663A2DA8439900BE1892 /* TestsOrangeSpider */;
 		};

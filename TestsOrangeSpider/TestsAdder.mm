@@ -25,7 +25,7 @@
 - (void)testExample {
     Adder adder;
     
-    XCTAssertEqual(5, adder.addNumber(2, 2));
+    XCTAssertEqual(4, adder.addNumber(2, 2));
     // This is an example of a functional test case.
     // Use XCTAssert and related functions to verify your tests produce the correct results.
 }
