@@ -34,6 +34,24 @@
     XCTAssertEqual(8.0f, spiderLeg.getBotLength());
 }
 
+- (void)testEqualityOperator_1 {
+    SpLegAnatomy spiderLegA{12, 13, 14};
+    SpLegAnatomy spiderLegB{12, 13, 14};
+    XCTAssertTrue(spiderLegA == spiderLegB);
+}
+
+- (void)testEqualityOperator_2 {
+    SpLegAnatomy spiderLegA{12, 13, 14};
+    XCTAssertTrue(spiderLegA == spiderLegA);
+}
+
+- (void)testEqualityOperator_3 {
+    SpLegAnatomy spiderLegA{12, 13, 14};
+    SpLegAnatomy spiderLegB{8, 2, 14};
+    
+    XCTAssertFalse(spiderLegA == spiderLegB);
+}
+
 - (void)testPerformanceExample {
     // This is an example of a performance test case.
     [self measureBlock:^{

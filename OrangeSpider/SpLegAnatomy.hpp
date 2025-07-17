@@ -6,6 +6,7 @@ class SpLegAnatomy
     public:
     
     SpLegAnatomy(float topLength, float midLength, float botLength);
+    bool operator== (const SpLegAnatomy& o) const;
     
     float getTopLength();
     float getMidLength();

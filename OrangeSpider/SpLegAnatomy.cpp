@@ -21,3 +21,10 @@ float SpLegAnatomy::getBotLength()
 {
     return _botLength;
 }
+
+bool SpLegAnatomy::operator== (const SpLegAnatomy& o) const
+{
+    return ( _topLength == o._topLength ) &&
+           ( _midLength == o._midLength ) &&
+           ( _botLength == o._botLength );
+}
