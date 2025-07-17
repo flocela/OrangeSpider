@@ -6,6 +6,7 @@ class SpLegAngles
     public:
 
     SpLegAngles(float top_r, float mid_r, float bottom_r);
+    bool operator==(const SpLegAngles& o) const;
     
     float getTopAngle();
     float getMidAngle();

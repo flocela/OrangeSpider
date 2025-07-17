@@ -7,6 +7,13 @@ SpLegAngles::SpLegAngles(float top_r, float mid_r, float bottom_r)
 {
 }
 
+bool SpLegAngles::operator==(const SpLegAngles& o) const
+{
+    return (_topAngle_r == o._topAngle_r) &&
+           (_midAngle_r == o._midAngle_r) &&
+           (_botAngle_r == o._botAngle_r);
+}
+
 float SpLegAngles::getTopAngle()
 {
     return _topAngle_r;
@@ -21,6 +28,8 @@ float SpLegAngles::getBotAngle()
 {
     return _botAngle_r;
 }
+
+
 
 
     

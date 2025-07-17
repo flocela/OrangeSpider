@@ -33,6 +33,31 @@
     XCTAssertEqual(50.0f, spiderLeg.getBotAngle());
 }
 
+- (void)testEquality {
+    SpLegAngles spiderLegA{20.0f, 30.0f, 50.0f};
+    SpLegAngles spiderLegB{20.0f, 30.0f, 50.0f};
+    
+    XCTAssertTrue(true);
+}
+
+- (void)testEqualityOperator_1 {
+    SpLegAngles spiderLegA{12, 13, 14};
+    SpLegAngles spiderLegB{12, 13, 14};
+    XCTAssertTrue(spiderLegA == spiderLegB);
+}
+
+- (void)testEqualityOperator_2 {
+    SpLegAngles spiderLegA{12, 13, 14};
+    XCTAssertTrue(spiderLegA == spiderLegA);
+}
+
+- (void)testEqualityOperator_3 {
+    SpLegAngles spiderLegA{12, 13, 14};
+    SpLegAngles spiderLegB{8, 2, 14};
+    
+    XCTAssertFalse(spiderLegA == spiderLegB);
+}
+
 - (void)testPerformanceExample {
     // This is an example of a performance test case.
     [self measureBlock:^{
