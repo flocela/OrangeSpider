@@ -15,12 +15,12 @@ namespace lve
         VkPipelineColorBlendStateCreateInfo     colorBlendInfo;
         VkPipelineDepthStencilStateCreateInfo   depthStencilInfo;
         
-        VkViewport                          viewport;
-        VkRect2D                            scissor;
-        VkPipelineColorBlendAttachmentState colorBlendAttachment;
-        VkPipelineLayout                    pipelineLayout = nullptr;
-        VkRenderPass                        renderPass = nullptr;
-        uint32_t                            subpass = 0;
+        VkViewport                              viewport;
+        VkRect2D                                scissor;
+        VkPipelineColorBlendAttachmentState     colorBlendAttachment;
+        VkPipelineLayout                        pipelineLayout = nullptr;
+        VkRenderPass                            renderPass = nullptr;
+        uint32_t                                subpass = 0;
     };
 
     class LvePipeline

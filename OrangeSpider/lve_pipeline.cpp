@@ -43,6 +43,7 @@ namespace lve
         return buffer;
     }
     
+    // LvePipelineConfigInfo's data used to make VkGraphicsPipelineCreateInfo
     void LvePipeline::createGraphicsPipeline(
             const std::string& vertFilepath,
             const std::string fragFilepath,
@@ -56,12 +57,12 @@ namespace lve
         
         
         // Create a VkGraphicsPipelineCreateInfo to initialize the class attribute VkPipeline graphicsPipeline.
+        VkGraphicsPipelineCreateInfo pipelineInfo{};
         // VkGraphicsPipelineCreateInfo requires
             // 1) VkPipelineShaderStageCreateInfo,
             // 2) VkPipelineVertexInputStateCreateInfo,
             // 3) VkPipelineViewportStateCreateInfo,
-            // 4) info from LvePipelineConfigInfo& configInfo that was passed in.
-        VkGraphicsPipelineCreateInfo pipelineInfo{};
+            // 4) info from LvePipelineConfigInfo& configInfo (argument in this method).
         VkPipelineShaderStageCreateInfo shaderStages[2];
         VkPipelineVertexInputStateCreateInfo vertexInputInfo{};
         VkPipelineViewportStateCreateInfo viewportInfo{};
@@ -128,12 +129,13 @@ namespace lve
         pipelineInfo.basePipelineHandle = VK_NULL_HANDLE;
         
         if(vkCreateGraphicsPipelines(
-            lveDevice.device(),
-            VK_NULL_HANDLE,
-            1,
-            &pipelineInfo,
-            nullptr,
-            &graphicsPipeline) != VK_SUCCESS)
+                lveDevice.device(),
+                VK_NULL_HANDLE,
+                1,
+                &pipelineInfo,
+                nullptr,
+                &graphicsPipeline)
+            != VK_SUCCESS)
         {
             throw std::runtime_error("failed to create graphics pipeline!!!");
         }

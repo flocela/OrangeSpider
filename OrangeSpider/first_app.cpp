@@ -7,11 +7,14 @@ namespace lve
     FirstApp::FirstApp()
     {
         loadModels();
-        // Need a PipelineLayout to initialize Pipeline.
+        
+        // 1. Need a VkPipelineLayout to initialize Pipeline in createPipeline().
         createPipelineLayout();
         
+        // 2. Creates a LvePipeline. LvePipeline constructor takes in the VkPipelineLayout.
         createPipeline();
         
+        // 3. LvePipeline contains a graphics pipeline. LvePipeline binds the commandBuffer to this graphicsPipeline in createCommandBuffers.
         createCommandBuffers();
     }
 
