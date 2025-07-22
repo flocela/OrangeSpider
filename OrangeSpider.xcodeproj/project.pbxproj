@@ -57,6 +57,7 @@
 			membershipExceptions = (
 				Adder.cpp,
 				SpHeadAnatomy.cpp,
+				SpiderState.cpp,
 				SpLeg.cpp,
 				SpLegAnatomy.cpp,
 				SpLegAngles.cpp,
