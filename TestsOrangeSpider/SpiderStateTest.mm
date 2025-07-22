@@ -81,6 +81,60 @@
     }
 }
 
+- (void)testHeadValues {
+    SpLegAngles spLegAngles{20, 30, 50};
+    SpLegAnatomy spLegAnatomy{7, 12, 8};
+    SpLeg spiderLeg{spLegAnatomy, spLegAngles};
+    
+    float topLength = 10;
+    float midLength = 11;
+    float botLength = 12;
+    
+    float topAngle = 0.0f;
+    float midAngle = 0.1f;
+    float botAngle = 0.2f;
+    
+    std::vector<SpLeg> legs{};
+    for(int ii=0; ii<8; ++ii)
+    {
+        SpLegAnatomy lengths(topLength + (ii* 3), midLength + (ii*3), botLength + (ii*3));
+        SpLegAngles angles(topAngle + (ii * .3f), midAngle + (ii *.3f), botAngle + (ii * .3f));
+        legs.push_back(SpLeg{lengths, angles});
+    }
+    
+    float headHeight = 20.0f;
+    float headRadius = 10.0f;
+    float headElevation = 50.0f;
+    
+    SpiderState spiderState{
+        SpHeadAnatomy{headHeight, headRadius},
+        headElevation,
+        legs[0],
+        0.87266, //50
+        legs[1],
+        1.57080, //90
+        legs[2],
+        1.91986, //110
+        legs[3],
+        2.44346, //140
+        legs[4],
+        3.83972, //220
+        legs[5],
+        4.36332, //250
+        legs[6],
+        4.71238, //270
+        legs[7],
+        5.41052  //310
+    };
+    
+   XCTAssertEqual(spiderState.getHeadHeight(), 20.0f);
+   XCTAssertEqual(spiderState.getHeadRadius(), 10.0f);
+   XCTAssertEqual(spiderState.getTopOfHeadElevation(), 50.0f + 20.0f);
+   XCTAssertEqual(spiderState.getMidOfHeadElevation(), 50.0f + 10.0f);
+   XCTAssertEqual(spiderState.getBotOfHeadElevation(), 50.0f);
+   
+}
+
 - (void)testPerformanceExample {
     // This is an example of a performance test case.
     [self measureBlock:^{

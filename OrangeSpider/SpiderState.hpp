@@ -40,11 +40,17 @@ class SpiderState
     float getMidAngle(int legIndex);
     float getBotAngle(int legIndex);
     
-    
+    float getHeadHeight();
+    float getHeadRadius();
+    float getTopOfHeadElevation();
+    float getMidOfHeadElevation();
+    float getBotOfHeadElevation();
     
     private:
         
     std::vector<SpLeg> _legs;
+    SpHeadAnatomy      _head;
+    float              _headElevation = 0.0f;
     
 };
 

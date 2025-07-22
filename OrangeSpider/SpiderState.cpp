@@ -26,8 +26,11 @@ SpiderState::SpiderState(
     float angle6_r,
     SpLeg spLeg7,
     float angle7_r
-)
+):  _head{spHead},
+    _headElevation(headElevation)
 {
+    _head = spHead;
+    _headElevation = headElevation;
     _legs.push_back(spLeg0);
     _legs.push_back(spLeg1);
     _legs.push_back(spLeg2);
@@ -67,5 +70,30 @@ float SpiderState::getMidAngle(int legIndex)
 float SpiderState::getBotAngle(int legIndex)
 {
     return _legs[legIndex].getBotAngle();
+}
+
+float SpiderState::getHeadHeight()
+{
+    return _head.getHeight();
+}
+
+float SpiderState::getHeadRadius()
+{
+    return _head.getRadius();
+}
+
+float SpiderState::getTopOfHeadElevation()
+{
+    return _headElevation + _head.getHeight();
+}
+
+float SpiderState::getMidOfHeadElevation()
+{
+    return _headElevation + (_head.getHeight()/2.0f);
+}
+
+float SpiderState::getBotOfHeadElevation()
+{
+    return _headElevation;
 }
 
