@@ -428,6 +428,21 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
+				HEADER_SEARCH_PATHS = (
+					/opt/homebrew/include/,
+					/Applications/Development/VulkanSDK/macOS/include,
+					/Applications/libs/,
+				);
+				"HEADER_SEARCH_PATHS[arch=*]" = (
+					/opt/homebrew/include/,
+					/Applications/Development/VulkanSDK/macOS/include,
+					/Applications/libs/,
+				);
+				LIBRARY_SEARCH_PATHS = (
+					/Applications/Development/VulkanSDK/macOS/lib,
+					/opt/homebrew/lib,
+					/Applications/libs/,
+				);
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = workVestCoding.TestsOrangeSpider;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -441,6 +456,16 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
+				HEADER_SEARCH_PATHS = (
+					/opt/homebrew/include,
+					/Applications/Development/VulkanSDK/macOS/include/,
+					/Applications/libs/,
+				);
+				LIBRARY_SEARCH_PATHS = (
+					/Applications/Development/VulkanSDK/macOS/lib,
+					/opt/homebrew/lib,
+					/Applications/libs/,
+				);
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = workVestCoding.TestsOrangeSpider;
 				PRODUCT_NAME = "$(TARGET_NAME)";

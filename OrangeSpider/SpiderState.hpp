@@ -3,7 +3,7 @@
 
 #include "SpLeg.hpp"
 #include "SpHeadAnatomy.hpp"
-
+#include <glm/glm.hpp>
 #include <memory>
 #include <vector>
 
@@ -14,6 +14,7 @@ class SpiderState
     SpiderState(
         SpHeadAnatomy spHead,
         float headElevation, // bottom of head.
+        float ratioedLegConnectionElevation,
         SpLeg spLeg0,
         float angle0_r,
         SpLeg spLeg1,
@@ -31,7 +32,7 @@ class SpiderState
         SpLeg spLeg7,
         float angle7_r
     );
-    
+
     float getTopLength(int legIndex);
     float getMidLength(int legIndex);
     float getBotLength(int legIndex);
@@ -46,12 +47,22 @@ class SpiderState
     float getMidOfHeadElevation();
     float getBotOfHeadElevation();
     
+    glm::vec3 getElevationBotOfHeadPos();
+    glm::vec3 getRatioedElevation(float portionOfHeadAboveBottom);
+    glm::vec3 getTopLengthTopPoint(uint32_t legIndex);
+    glm::vec3 getMidLengthTopPoint(uint32_t legIndex);
+    glm::vec3 getBotLengthTopPoint(uint32_t legIndex);
+    glm::vec3 getBotLengthBotPoint(uint32_t legIndex);
+    
     private:
         
-    std::vector<SpLeg> _legs;
-    SpHeadAnatomy      _head;
-    float              _headElevation = 0.0f;
-    
+    SpHeadAnatomy          _head;
+    float                  _headElevation = 0.0f;
+    float                  _legConnectionElevation;
+    std::vector<SpLeg>     _legs;
+    std::vector<float>     _legPolarAngles;
+    std::vector<glm::vec3> _topLegConnectionPoints;
+
 };
 
 #endif /* SpiderState_hpp */
