@@ -2,8 +2,11 @@
 #define SpiderState_hpp
 
 #include "SpLeg.hpp"
+#include "SpLeftLeg.hpp"
 #include "SpHeadAnatomy.hpp"
+
 #include <glm/glm.hpp>
+
 #include <memory>
 #include <vector>
 
@@ -15,21 +18,21 @@ class SpiderState
         SpHeadAnatomy spHead,
         float headElevation, // bottom of head.
         float ratioedLegConnectionElevation,
-        SpLeg spLeg0,
+        std::shared_ptr<SpLeg> spLeg0,
         float angle0_r,
-        SpLeg spLeg1,
+        std::shared_ptr<SpLeg>spLeg1,
         float angle1_r,
-        SpLeg spLeg2,
+        std::shared_ptr<SpLeg> spLeg2,
         float angle2_r,
-        SpLeg spLeg3,
+        std::shared_ptr<SpLeg> spLeg3,
         float angle3_r,
-        SpLeg spLeg4,
+        std::shared_ptr<SpLeg> spLeg4,
         float angle4_r,
-        SpLeg spLeg5,
+        std::shared_ptr<SpLeg> spLeg5,
         float angle5_r,
-        SpLeg spLeg6,
+        std::shared_ptr<SpLeg> spLeg6,
         float angle6_r,
-        SpLeg spLeg7,
+        std::shared_ptr<SpLeg> spLeg7,
         float angle7_r
     );
 
@@ -59,7 +62,7 @@ class SpiderState
     SpHeadAnatomy          _head;
     float                  _headElevation = 0.0f;
     float                  _legConnectionElevation;
-    std::vector<SpLeg>     _legs;
+    std::vector<std::shared_ptr<SpLeg>>     _legs; // TODO should this be shared or unique
     std::vector<float>     _legPolarAngles;
     std::vector<glm::vec3> _topLegConnectionPoints;
 

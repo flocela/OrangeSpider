@@ -1,38 +1,31 @@
-//
-//  SpiderState.cpp
-//  OrangeSpider
-//
-//  Created by Flo Maldonado on 7/21/25.
-//
-
 #include "SpiderState.hpp"
 
 SpiderState::SpiderState(
     SpHeadAnatomy spHead,
     float headElevation, // bottom of head.
     float ratioedLegConnectionElevation,
-    SpLeg spLeg0,
+    std::shared_ptr<SpLeg> spLeg0,
     float angle0_r,
-    SpLeg spLeg1,
+    std::shared_ptr<SpLeg> spLeg1,
     float angle1_r,
-    SpLeg spLeg2,
+    std::shared_ptr<SpLeg> spLeg2,
     float angle2_r,
-    SpLeg spLeg3,
+    std::shared_ptr<SpLeg> spLeg3,
     float angle3_r,
-    SpLeg spLeg4,
+    std::shared_ptr<SpLeg> spLeg4,
     float angle4_r,
-    SpLeg spLeg5,
+    std::shared_ptr<SpLeg> spLeg5,
     float angle5_r,
-    SpLeg spLeg6,
+    std::shared_ptr<SpLeg> spLeg6,
     float angle6_r,
-    SpLeg spLeg7,
+    std::shared_ptr<SpLeg> spLeg7,
     float angle7_r
 ):  _head{spHead},
     _headElevation(headElevation)
 {
     _head = spHead;
     _headElevation = headElevation;
-    _legConnectionElevation = _headElevation + (_head.getHeight() * ratioedLegConnectionElevation),
+    _legConnectionElevation = _headElevation + (_head.getHeight() * ratioedLegConnectionElevation);
     _legs.push_back(spLeg0);
     _legs.push_back(spLeg1);
     _legs.push_back(spLeg2);
@@ -61,33 +54,33 @@ SpiderState::SpiderState(
 
 float SpiderState::getTopLength(int legIndex)
 {
-    return _legs[legIndex].getTopLength();
+    return _legs[legIndex]->getTopLength();
 }
 
 float SpiderState::getMidLength(int legIndex)
 {
-    return _legs[legIndex].getMidLength();
+    return _legs[legIndex]->getMidLength();
 }
 
 float SpiderState::getBotLength(int legIndex)
 {
-    return _legs[legIndex].getBotLength();
+    return _legs[legIndex]->getBotLength();
 }
 
     
 float SpiderState::getTopAngle(int legIndex)
 {
-    return _legs[legIndex].getTopAngle();
+    return _legs[legIndex]->getTopAngle();
 }
 
 float SpiderState::getMidAngle(int legIndex)
 {
-    return _legs[legIndex].getMidAngle();
+    return _legs[legIndex]->getMidAngle();
 }
 
 float SpiderState::getBotAngle(int legIndex)
 {
-    return _legs[legIndex].getBotAngle();
+    return _legs[legIndex]->getBotAngle();
 }
 
 float SpiderState::getHeadHeight()
@@ -132,12 +125,7 @@ glm::vec3 SpiderState::getTopLengthTopPoint(uint32_t legIndex)
 
 glm::vec3 SpiderState::getMidLengthTopPoint(uint32_t legIndex)
 {
-    glm::vec3 topLegConnectionPoint = getTopLengthTopPoint(legIndex);
-    return glm::vec3(
-        topLegConnectionPoint.x + std::sin(_legs[legIndex].getTopAngle()) * _legs[legIndex].getTopLength(),
-        topLegConnectionPoint.y + std::cos(_legs[legIndex].getTopAngle()) * _legs[legIndex].getTopLength(),
-        topLegConnectionPoint.z
-        );
+    return _legs[legIndex]->getMidLengthTopPoint();
 }
 
 glm::vec3 SpiderState::getBotLengthTopPoint(uint32_t legIndex)

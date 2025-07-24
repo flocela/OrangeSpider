@@ -58,6 +58,7 @@
 				Adder.cpp,
 				SpHeadAnatomy.cpp,
 				SpiderState.cpp,
+				SpLeftLeg.cpp,
 				SpLeg.cpp,
 				SpLegAnatomy.cpp,
 				SpLegAngles.cpp,
