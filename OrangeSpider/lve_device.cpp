@@ -465,10 +465,11 @@ uint32_t LveDevice::findMemoryType(uint32_t typeFilter, VkMemoryPropertyFlags pr
 // initializes &buffer and &bufferMemory
 void LveDevice::createBuffer(
     VkDeviceSize size,
-    VkBufferUsageFlags usage,
+    VkBufferUsageFlags usage, // vertex data, index data, storage data, etc.
     VkMemoryPropertyFlags properties,
     VkBuffer &buffer,
-    VkDeviceMemory &bufferMemory)
+    VkDeviceMemory &bufferMemory // holds the raw data that is the actual vertex data 
+)
 {
     VkBufferCreateInfo bufferCreateInfo{};
     bufferCreateInfo.sType = VK_STRUCTURE_TYPE_BUFFER_CREATE_INFO;

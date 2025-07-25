@@ -25,7 +25,7 @@ namespace lve
             VK_BUFFER_USAGE_VERTEX_BUFFER_BIT,
             VK_MEMORY_PROPERTY_HOST_VISIBLE_BIT | VK_MEMORY_PROPERTY_HOST_COHERENT_BIT,
             _vertexBuffer,
-            _vertexBufferMemory);
+            _vertexBufferMemory); // _vertexBufferMemory is VkDeviceMemory
         void *data;
         vkMapMemory(_lveDevice.device(), _vertexBufferMemory, 0, bufferSize, 0, &data);
         memcpy(data, vertices.data(), static_cast<size_t>(bufferSize));

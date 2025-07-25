@@ -66,7 +66,9 @@ namespace lve
     void FirstApp::createPipeline()
     {
         LvePipelineConfigInfo pipelineConfig =
-            LvePipeline::defaultPipelineConfigInfo(lveSwapChain.width(),lveSwapChain.height());
+            LvePipeline::defaultPipelineConfigInfo(
+                lveSwapChain.width(),
+                lveSwapChain.height());
         
         pipelineConfig.renderPass = lveSwapChain.getRenderPass();
         
