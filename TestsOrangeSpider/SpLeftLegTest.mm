@@ -19,7 +19,7 @@
     // Put teardown code here. This method is called after the invocation of each test method in the class.
 }
 
-// 1.0 Test basic setters and getters for leg lengths and angles.
+/* * 1.0 Test basic setters and getters for leg lengths and angles. * */
 - (void)testGetTopAngle {
     SpLegAngles spLegAngles{0.34906f, 0.52360f, 0.87266f}; // {20, 30, 50 degrees}
     SpLegAnatomy spLegAnatomy{7, 12, 8};
@@ -73,36 +73,11 @@
 
     XCTAssertEqual(spiderLeg.getBotLength(), 8);
 }
-// End 1.0 testing basic getters and setters. 
+/* * End 1.0 testing basic getters and setters. * */
 
-// 2.0 Test static methods that are called from protected methods as part of SpLeg's template method.
-- (void)testGetTopAngleFromHz{
-    SpLegAngles spLegAngles{0.34906f, 0.52360f, 0.87266f};
-    
-    XCTAssertEqualWithAccuracy(
-        (std::numbers::pi_v<float>/2.0f) - 0.34906f,
-        SpLeftLeg::getTopAngleFromHz(spLegAngles), 0.000001f);
-}
 
-- (void)testGetMidAngleFromHz{
-    SpLegAngles spLegAngles{0.34906f, 0.52360f, 0.87266f};
-    
-    XCTAssertEqualWithAccuracy(
-        0.52360f - ((std::numbers::pi_v<float>/2.0f) - 0.34906f),
-        SpLeftLeg::getMidAngleFromHz(spLegAngles),
-        0.000001f);
-}
 
-- (void)testGetBotAngleFromHz{
-    SpLegAngles spLegAngles{0.34906f, 0.52360f, 0.87266f};
-    
-    XCTAssertEqualWithAccuracy(
-        (std::numbers::pi_v<float> * 2.0f) - (0.52360f - ((std::numbers::pi_v<float>/2.0f) - 0.34906f)) - 0.87266f,
-        SpLeftLeg::getBotAngleFromHz(spLegAngles), 0.000001f);
-}
-// End 2.0 Test static methods.
-
-// 3.0 Test getting points on leg.
+/* * 2.0 Test getting points on leg. * */
 - (void)testGetTopLengthTopPoint{
     SpLegAngles spLegAngles{0.34906f, 0.52360f, 0.87266f};
     SpLegAnatomy spLegAnatomy{7.0f, 12.0f, 8.0f};
@@ -166,7 +141,7 @@
         sl.getBotLengthBotPoint()
     );
 }
-// 3.0 End test getting points on leg.
+/* *2.0 End test getting points on leg. * */
 
 
 - (void)testPerformanceExample {

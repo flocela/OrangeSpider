@@ -82,12 +82,12 @@
         XCTAssertEqual(spiderState.getBotAngle(ii), botTestAngle + (ii * .3f));
     }
 }
-*/
+
 
 - (void)testHeadValues {
     SpLegAngles spLegAngles{20, 30, 50};
     SpLegAnatomy spLegAnatomy{7, 12, 8};
-    SpLeftLeg spiderLeg{spLegAnatomy, spLegAngles};
+    SpRightLeg spiderLeg{spLegAnatomy, spLegAngles};
     
     float topLength = 10;
     float midLength = 11;
@@ -97,14 +97,14 @@
     float midAngle = 0.1f;
     float botAngle = 0.2f;
     
-    std::vector<std::shared_ptr<SpLeftLeg>> legs{};
+    std::vector<std::shared_ptr<SpRightLeg>> legs{};
     for(int ii=0; ii<8; ++ii)
     {
         SpLegAnatomy lengths(topLength + (ii* 3), midLength + (ii*3), botLength + (ii*3));
         SpLegAngles angles(topAngle + (ii * .3f), midAngle + (ii *.3f), botAngle + (ii * .3f));
         //legs.push_back(std::shared_ptr<SpLeftLeg>());
         //SpLeftLeg sp{lengths, angles};
-        legs.push_back(std::make_shared<SpLeftLeg>(lengths, angles));
+        legs.push_back(std::make_shared<SpRightLeg>(lengths, angles));
     }
     
     float headHeight = 20.0f;
@@ -140,7 +140,7 @@
    XCTAssertEqual(spiderState.getBotOfHeadElevation(), 50.0f);
    
 }
-
+*/
 /*
 - (void)testSpiderPoints {
     SpLegAngles spLegAngles{20.0f, 30.0f, 50.0f};

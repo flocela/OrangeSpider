@@ -9,33 +9,16 @@ SpLeftLeg::SpLeftLeg(SpLegAnatomy spLegAnatomy, SpLegAngles spLegAngles)
 
 float SpLeftLeg::getTopAngleFromHoriz()
 {
-    return SpLeftLeg::getTopAngleFromHz(_spLegAngles);
+    return (std::numbers::pi_v<float>/2.0f) - _spLegAngles.getTopAngle();
 }
 
 float SpLeftLeg::getMidAngleFromHoriz()
 {
-    return SpLeftLeg::getMidAngleFromHz(_spLegAngles);
+    return _spLegAngles.getMidAngle() - getTopAngleFromHoriz();
 }
 
 float SpLeftLeg::getBotAngleFromHoriz()
 {   
-    return SpLeftLeg::getBotAngleFromHz(_spLegAngles);
+    return (std::numbers::pi_v<float> * 2.0f) - (_spLegAngles.getBotAngle() + getMidAngleFromHoriz());
+    
 }
-
-/*  static methods */
-float SpLeftLeg::getTopAngleFromHz(SpLegAngles spLegAngles)
-{
-    return (std::numbers::pi_v<float>/2.0f) - spLegAngles.getTopAngle();
-}
-
-float SpLeftLeg::getMidAngleFromHz(SpLegAngles spLegAngles)
-{
-    return spLegAngles.getMidAngle() - SpLeftLeg::getTopAngleFromHz(spLegAngles);
-}
-
-float SpLeftLeg::getBotAngleFromHz(SpLegAngles spLegAngles)
-{
-    return (std::numbers::pi_v<float> * 2.0f) - (spLegAngles.getBotAngle() + SpLeftLeg::getMidAngleFromHz(spLegAngles));
-}
-
-/* end static methods*/

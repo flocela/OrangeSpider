@@ -11,10 +11,6 @@ class SpLeftLeg : public SpLeg
     //SpLeftLeg() = delete;
     ~SpLeftLeg() = default;
     
-    static float getTopAngleFromHz(SpLegAngles spLegAngles);
-    static float getMidAngleFromHz(SpLegAngles spLegAngles);
-    static float getBotAngleFromHz(SpLegAngles spLegAngles);
-    
     protected:
     
     float getTopAngleFromHoriz();
@@ -24,8 +20,5 @@ class SpLeftLeg : public SpLeg
     private:
     
 };
-
-
-
 
 #endif /* SpLeftLeg_hpp */

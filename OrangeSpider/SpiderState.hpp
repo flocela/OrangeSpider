@@ -2,7 +2,7 @@
 #define SpiderState_hpp
 
 #include "SpLeg.hpp"
-#include "SpLeftLeg.hpp"
+#include "SpRightLeg.hpp"
 #include "SpHeadAnatomy.hpp"
 
 #include <glm/glm.hpp>
