@@ -235,13 +235,13 @@
         XCTAssertEqual(spiderState.getElevationBotOfHeadPos(),
                        glm::vec3(0.0f, headElevation, 0.0f));
         
-        XCTAssertEqual(spiderState.getTopLengthTopPoint(ii), topLengthTopPoint);
+        XCTAssertEqual(spiderState.getConnectionPoint(ii), topLengthTopPoint);
         
-        XCTAssertEqual(spiderState.getMidLengthTopPoint(ii), midLengthTopPoint);
+        XCTAssertEqual(spiderState.getMid1Point(ii), midLengthTopPoint);
         
-        XCTAssertEqual(spiderState.getBotLengthTopPoint(ii), botLengthTopPoint);
+        XCTAssertEqual(spiderState.getMid2Point(ii), botLengthTopPoint);
         
-        XCTAssertEqual(spiderState.getBotLengthBotPoint(ii), botLengthBotPoint);
+        XCTAssertEqual(spiderState.getBotPoint(ii), botLengthBotPoint);
     }
     
 }

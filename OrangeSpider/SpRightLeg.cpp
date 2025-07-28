@@ -8,15 +8,15 @@ SpRightLeg::SpRightLeg(SpLegAnatomy spLegAnatomy, SpLegAngles spLegAngles)
 
 float SpRightLeg::getTopAngleFromHoriz()
 {
-    return (std::numbers::pi_v<float>/2.0f) + _spLegAngles.getTopAngle();
+    return (std::numbers::pi_v<float>/2.0f) + _spLegAngles.getConnectionAngle();
 }
 
 float SpRightLeg::getMidAngleFromHoriz()
 {
-    return getTopAngleFromHoriz() + _spLegAngles.getMidAngle();
+    return getTopAngleFromHoriz() + _spLegAngles.getMid1Angle();
 }
 
 float SpRightLeg::getBotAngleFromHoriz()
 {
-    return getMidAngleFromHoriz() + _spLegAngles.getBotAngle();
+    return getMidAngleFromHoriz() + _spLegAngles.getMid2Angle();
 }

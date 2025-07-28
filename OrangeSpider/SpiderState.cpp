@@ -115,22 +115,22 @@ glm::vec3 SpiderState::getElevationBotOfHeadPos()
     return glm::vec3{0.0f, _headElevation, 0.0f};
 }
 
-glm::vec3 SpiderState::getTopLengthTopPoint(uint32_t legIndex)
+glm::vec3 SpiderState::getConnectionPoint(uint32_t legIndex)
 {
     return _topLegConnectionPoints[legIndex];
 }
 
-glm::vec3 SpiderState::getMidLengthTopPoint(uint32_t legIndex)
+glm::vec3 SpiderState::getMid1Point(uint32_t legIndex)
 {
     return _topLegConnectionPoints[legIndex] +_legs[legIndex]->getMidLengthTopPoint();
 }
 
-glm::vec3 SpiderState::getBotLengthTopPoint(uint32_t legIndex)
+glm::vec3 SpiderState::getMid2Point(uint32_t legIndex)
 {
     return _topLegConnectionPoints[legIndex] +_legs[legIndex]->getBotLengthTopPoint();
 }
 
-glm::vec3 SpiderState::getBotLengthBotPoint(uint32_t legIndex)
+glm::vec3 SpiderState::getBotPoint(uint32_t legIndex)
 {
     return _topLegConnectionPoints[legIndex] +_legs[legIndex]->getBotLengthBotPoint();
 }

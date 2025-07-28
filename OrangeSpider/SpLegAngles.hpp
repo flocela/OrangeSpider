@@ -8,15 +8,16 @@ class SpLegAngles
     SpLegAngles(float top_r, float mid_r, float bottom_r);
     bool operator==(const SpLegAngles& o) const;
     
-    float getTopAngle();
-    float getMidAngle();
-    float getBotAngle();
+    // Connection angle connects spider head to spider leg.
+    float getConnectionAngle();
+    float getMid1Angle();
+    float getMid2Angle();
     
     private:
     
-    float _topAngle_r = 0.0f;
-    float _midAngle_r = 0.0f;
-    float _botAngle_r = 0.0f;
+    float _connectionAngle_r = 0.0f;
+    float _mid1Angle_r = 0.0f;
+    float _mid2Angle_r = 0.0f;
 
 };
 

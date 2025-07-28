@@ -1,32 +1,32 @@
 #include "SpLegAngles.hpp"
 
 SpLegAngles::SpLegAngles(float top_r, float mid_r, float bottom_r)
-:   _topAngle_r{top_r},
-    _midAngle_r{mid_r},
-    _botAngle_r{bottom_r}
+:   _connectionAngle_r{top_r},
+    _mid1Angle_r{mid_r},
+    _mid2Angle_r{bottom_r}
 {
 }
 
 bool SpLegAngles::operator==(const SpLegAngles& o) const
 {
-    return (_topAngle_r == o._topAngle_r) &&
-           (_midAngle_r == o._midAngle_r) &&
-           (_botAngle_r == o._botAngle_r);
+    return (_connectionAngle_r == o._connectionAngle_r) &&
+           (_mid1Angle_r == o._mid1Angle_r) &&
+           (_mid2Angle_r == o._mid2Angle_r);
 }
 
-float SpLegAngles::getTopAngle()
+float SpLegAngles::getConnectionAngle()
 {
-    return _topAngle_r;
+    return _connectionAngle_r;
 }
 
-float SpLegAngles::getMidAngle()
+float SpLegAngles::getMid1Angle()
 {
-    return _midAngle_r;
+    return _mid1Angle_r;
 }
 
-float SpLegAngles::getBotAngle()
+float SpLegAngles::getMid2Angle()
 {
-    return _botAngle_r;
+    return _mid2Angle_r;
 }
 
 

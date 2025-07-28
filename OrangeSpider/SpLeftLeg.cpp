@@ -9,16 +9,16 @@ SpLeftLeg::SpLeftLeg(SpLegAnatomy spLegAnatomy, SpLegAngles spLegAngles)
 
 float SpLeftLeg::getTopAngleFromHoriz()
 {
-    return (std::numbers::pi_v<float>/2.0f) - _spLegAngles.getTopAngle();
+    return (std::numbers::pi_v<float>/2.0f) - _spLegAngles.getConnectionAngle();
 }
 
 float SpLeftLeg::getMidAngleFromHoriz()
 {
-    return _spLegAngles.getMidAngle() - getTopAngleFromHoriz();
+    return _spLegAngles.getMid1Angle() - getTopAngleFromHoriz();
 }
 
 float SpLeftLeg::getBotAngleFromHoriz()
 {   
-    return (std::numbers::pi_v<float> * 2.0f) - (_spLegAngles.getBotAngle() + getMidAngleFromHoriz());
+    return (std::numbers::pi_v<float> * 2.0f) - (_spLegAngles.getMid2Angle() + getMidAngleFromHoriz());
     
 }

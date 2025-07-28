@@ -18,19 +18,19 @@
 - (void)testGetTopAngle {
     SpLegAngles spiderLeg{20.0f, 30.0f, 50.0f};
     
-    XCTAssertEqual(20.0f, spiderLeg.getTopAngle());
+    XCTAssertEqual(20.0f, spiderLeg.getConnectionAngle());
 }
 
 - (void)testGetMidAngle {
     SpLegAngles spiderLeg{20.0f, 30.0f, 50.0f};
     
-    XCTAssertEqual(30.0f, spiderLeg.getMidAngle());
+    XCTAssertEqual(30.0f, spiderLeg.getMid1Angle());
 }
 
 - (void)testGetBotAngle {
     SpLegAngles spiderLeg{20.0f, 30.0f, 50.0f};
     
-    XCTAssertEqual(50.0f, spiderLeg.getBotAngle());
+    XCTAssertEqual(50.0f, spiderLeg.getMid2Angle());
 }
 
 - (void)testEquality {

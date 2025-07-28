@@ -9,17 +9,17 @@ SpLeg::SpLeg(SpLegAnatomy spLegAnatomy, SpLegAngles spLegAngles)
     
 float SpLeg::getTopAngle()
 {
-    return _spLegAngles.getTopAngle();
+    return _spLegAngles.getConnectionAngle();
 }
 
 float SpLeg::getMidAngle()
 {
-    return _spLegAngles.getMidAngle();
+    return _spLegAngles.getMid1Angle();
 }
 
 float SpLeg::getBotAngle()
 {
-    return _spLegAngles.getBotAngle();
+    return _spLegAngles.getMid2Angle();
 }
 
 
