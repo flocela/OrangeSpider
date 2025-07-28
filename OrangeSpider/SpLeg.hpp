@@ -10,7 +10,7 @@ class SpLeg
 {
     public:
     
-    SpLeg(SpLegAnatomy spLegAnatomy, SpLegAngles spLegAngles);
+    SpLeg(SpLegAnatomy spLegAnatomy, SpLegAngles spLegAngles, SpLegAngles minExtension, SpLegAngles maxExtension);
     virtual ~SpLeg() = default;
     
     float getTopAngle();
@@ -31,7 +31,9 @@ class SpLeg
     
     protected:
     
-    SpLegAngles  _spLegAngles;
+    SpLegAngles _spLegAngles;
+    SpLegAngles _minExtensionAngles;
+    SpLegAngles _maxExtensionAngles;
     
     virtual float getTopAngleFromHoriz() = 0;
     virtual float getMidAngleFromHoriz() = 0;

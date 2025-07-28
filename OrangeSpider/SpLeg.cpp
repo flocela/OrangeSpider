@@ -2,9 +2,11 @@
 
 #include <iostream>
 
-SpLeg::SpLeg(SpLegAnatomy spLegAnatomy, SpLegAngles spLegAngles)
+SpLeg::SpLeg(SpLegAnatomy spLegAnatomy, SpLegAngles spLegAngles, SpLegAngles minExtension, SpLegAngles maxExtension)
 :   _spLegAnatomy{spLegAnatomy},
-    _spLegAngles{spLegAngles}
+    _spLegAngles{spLegAngles},
+    _minExtensionAngles{minExtension},
+    _maxExtensionAngles{minExtension}
 {}
     
 float SpLeg::getTopAngle()

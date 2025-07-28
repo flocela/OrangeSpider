@@ -24,19 +24,23 @@
 
 /* * 1.0 Test getting points on leg. * */
 - (void)testGetTopLengthTopPoint{
-    SpLegAngles spLegAngles{0.34906f, 0.52360f, 0.87266f};
     SpLegAnatomy spLegAnatomy{7.0f, 12.0f, 8.0f};
+    SpLegAngles spLegAngles{0.34906f, 0.52360f, 0.87266f};
+    SpLegAngles minExtensionAngles{0.17453f, 2.00712f, 1.57080}; // 10, 115, 90
+    SpLegAngles maxExtensionAngles{1.30900f, 0.17453f, 0.26180}; // 75, 10, 15
     
-    SpRightLeg spiderLeg{spLegAnatomy, spLegAngles};
+    SpRightLeg spiderLeg{spLegAnatomy, spLegAngles, minExtensionAngles, maxExtensionAngles};
     
     XCTAssertEqual(glm::vec3(0.0f, 0.0f, 0.0f), spiderLeg.getTopLengthTopPoint());
 }
 
 - (void)testGetMidLengthTopPoint{
-    SpLegAngles spLegAngles{0.34906f, 0.52360f, 0.87266f};
     SpLegAnatomy spLegAnatomy{7.0f, 12.0f, 8.0f};
+    SpLegAngles spLegAngles{0.34906f, 0.52360f, 0.87266f};
+    SpLegAngles minExtensionAngles{0.17453f, 2.00712f, 1.57080}; // 10, 115, 90
+    SpLegAngles maxExtensionAngles{1.30900f, 0.17453f, 0.26180}; // 75, 10, 15
     
-    SpRightLeg spiderLeg{spLegAnatomy, spLegAngles};
+    SpRightLeg spiderLeg{spLegAnatomy, spLegAngles, minExtensionAngles, maxExtensionAngles};
     
     float topAngleFromHoriz = (std::numbers::pi_v<float>/2.0f) + 0.34906f;
     
@@ -50,40 +54,44 @@
 }
 
 - (void)testGetBotLengthTopPoint{
-    SpLegAngles spLegAngles{0.34906f, 0.52360f, 0.87266f};
     SpLegAnatomy spLegAnatomy{7.0f, 12.0f, 8.0f};
+    SpLegAngles spLegAngles{0.34906f, 0.52360f, 0.87266f};
+    SpLegAngles minExtensionAngles{0.17453f, 2.00712f, 1.57080}; // 10, 115, 90
+    SpLegAngles maxExtensionAngles{1.30900f, 0.17453f, 0.26180}; // 75, 10, 15
     
-    SpRightLeg sl{spLegAnatomy, spLegAngles};
+    SpRightLeg spiderLeg{spLegAnatomy, spLegAngles, minExtensionAngles, maxExtensionAngles};
     
     float midAngleFromHoriz = 0.52360f + ((std::numbers::pi_v<float>/2.0f) + 0.34906f);
-    glm::vec3 midLengthTopPoint = sl.getMidLengthTopPoint();
+    glm::vec3 midLengthTopPoint = spiderLeg.getMidLengthTopPoint();
     
     XCTAssertEqual(
         glm::vec3(
-            midLengthTopPoint.x + std::cos(midAngleFromHoriz)*sl.getMidLength(),
-            midLengthTopPoint.y + std::sin(midAngleFromHoriz)*sl.getMidLength(),
+            midLengthTopPoint.x + std::cos(midAngleFromHoriz)*spiderLeg.getMidLength(),
+            midLengthTopPoint.y + std::sin(midAngleFromHoriz)*spiderLeg.getMidLength(),
             0.0f),
-        sl.getBotLengthTopPoint()
+        spiderLeg.getBotLengthTopPoint()
     );
 }
 
 - (void)testGetBotLengthBotPoint{
-    SpLegAngles spLegAngles{0.34906f, 0.52360f, 0.87266f};
     SpLegAnatomy spLegAnatomy{7.0f, 12.0f, 8.0f};
+    SpLegAngles spLegAngles{0.34906f, 0.52360f, 0.87266f};
+    SpLegAngles minExtensionAngles{0.17453f, 2.00712f, 1.57080}; // 10, 115, 90
+    SpLegAngles maxExtensionAngles{1.30900f, 0.17453f, 0.26180}; // 75, 10, 15
     
-    SpRightLeg sl{spLegAnatomy, spLegAngles};
+    SpRightLeg spiderLeg{spLegAnatomy, spLegAngles, minExtensionAngles, maxExtensionAngles};
     
     float botAngleFromHoriz = 
         ((std::numbers::pi_v<float>/2.0f) + 0.34906f) + 0.52360f + 0.87266f;
         
-    glm::vec3 botLengthTopPoint = sl.getBotLengthTopPoint();
+    glm::vec3 botLengthTopPoint = spiderLeg.getBotLengthTopPoint();
     
     XCTAssertEqual(
         glm::vec3(
-            botLengthTopPoint.x + std::cos(botAngleFromHoriz)*sl.getBotLength(),
-            botLengthTopPoint.y + std::sin(botAngleFromHoriz)*sl.getBotLength(),
+            botLengthTopPoint.x + std::cos(botAngleFromHoriz)*spiderLeg.getBotLength(),
+            botLengthTopPoint.y + std::sin(botAngleFromHoriz)*spiderLeg.getBotLength(),
             0.0f),
-        sl.getBotLengthBotPoint()
+        spiderLeg.getBotLengthBotPoint()
     );
 }
 /* *1.0 End test getting points on leg. * */

@@ -2,8 +2,8 @@
 
 #include <numbers>
 
-SpRightLeg::SpRightLeg(SpLegAnatomy spLegAnatomy, SpLegAngles spLegAngles)
-:   SpLeg(spLegAnatomy, spLegAngles)
+SpRightLeg::SpRightLeg(SpLegAnatomy spLegAnatomy, SpLegAngles spLegAngles, SpLegAngles minExtension, SpLegAngles maxExtension)
+:   SpLeg(spLegAnatomy, spLegAngles, minExtension, maxExtension)
 {}
 
 float SpRightLeg::getTopAngleFromHoriz()

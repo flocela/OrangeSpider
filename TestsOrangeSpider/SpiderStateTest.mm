@@ -22,9 +22,11 @@
 }
 
 - (void)testGetLengthsAndAngles {
-    SpLegAngles spLegAngles{20, 30, 50};
     SpLegAnatomy spLegAnatomy{7, 12, 8};
-    SpLeftLeg spiderLeg{spLegAnatomy, spLegAngles};
+    SpLegAngles spLegAngles{20, 30, 50};
+    SpLegAngles minExtensionAngles{0.17453f, 2.00712f, 1.57080}; // 10, 115, 90
+    SpLegAngles maxExtensionAngles{1.30900f, 0.17453f, 0.26180}; // 75, 10, 15
+    SpLeftLeg spiderLeg{spLegAnatomy, spLegAngles, minExtensionAngles, maxExtensionAngles};
     
     float topLength = 10;
     float midLength = 11;
@@ -42,11 +44,11 @@
         
         if (ii < 4)
         {
-            legs.push_back(std::make_shared<SpLeftLeg>(lengths, angles));
+            legs.push_back(std::make_shared<SpLeftLeg>(lengths, angles, minExtensionAngles, maxExtensionAngles));
         }
         else
         {
-            legs.push_back(std::make_shared<SpRightLeg>(lengths, angles));
+            legs.push_back(std::make_shared<SpRightLeg>(lengths, angles,  minExtensionAngles, maxExtensionAngles));
         }
     }
     
@@ -93,9 +95,12 @@
 }
 
 - (void)testHeadValues {
-    SpLegAngles spLegAngles{20, 30, 50};
     SpLegAnatomy spLegAnatomy{7, 12, 8};
-    SpLeftLeg spiderLeg{spLegAnatomy, spLegAngles};
+    SpLegAngles spLegAngles{20, 30, 50};
+    SpLegAngles minExtensionAngles{0.17453f, 2.00712f, 1.57080}; // 10, 115, 90
+    SpLegAngles maxExtensionAngles{1.30900f, 0.17453f, 0.26180}; // 75, 10, 15
+    
+    SpLeftLeg spiderLeg{spLegAnatomy, spLegAngles, minExtensionAngles, maxExtensionAngles};
     
     float topLength = 10;
     float midLength = 11;
@@ -113,11 +118,11 @@
         
         if (ii < 4)
         {
-            legs.push_back(std::make_shared<SpLeftLeg>(lengths, angles));
+            legs.push_back(std::make_shared<SpLeftLeg>(lengths, angles, minExtensionAngles, maxExtensionAngles));
         }
         else
         {
-            legs.push_back(std::make_shared<SpRightLeg>(lengths, angles));
+            legs.push_back(std::make_shared<SpRightLeg>(lengths, angles, minExtensionAngles, maxExtensionAngles));
         }
     }
     
@@ -153,9 +158,11 @@
 
 
 - (void)testSpiderPoints {
-    SpLegAngles spLegAngles{20, 30, 50};
     SpLegAnatomy spLegAnatomy{7, 12, 8};
-    SpLeftLeg spiderLeg{spLegAnatomy, spLegAngles};
+    SpLegAngles spLegAngles{20, 30, 50};
+    SpLegAngles minExtensionAngles{0.17453f, 2.00712f, 1.57080}; // 10, 115, 90
+    SpLegAngles maxExtensionAngles{1.30900f, 0.17453f, 0.26180}; // 75, 10, 15
+    SpLeftLeg spiderLeg{spLegAnatomy, spLegAngles, minExtensionAngles, maxExtensionAngles};
     
     float topLength = 10;
     float midLength = 11;
@@ -178,11 +185,11 @@
         
         if (ii == 0 || ii == 1 || ii == 6 || ii == 7)
         {
-            legs.push_back(std::make_shared<SpLeftLeg>(lengths, angles));
+            legs.push_back(std::make_shared<SpLeftLeg>(lengths, angles, minExtensionAngles, maxExtensionAngles));
         }
         else
         {
-            legs.push_back(std::make_shared<SpRightLeg>(lengths, angles));
+            legs.push_back(std::make_shared<SpRightLeg>(lengths, angles, minExtensionAngles, maxExtensionAngles));
         }
     }
     

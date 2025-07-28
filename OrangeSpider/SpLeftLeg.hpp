@@ -7,7 +7,7 @@ class SpLeftLeg : public SpLeg
 {
 
     public:
-    SpLeftLeg(SpLegAnatomy spLegAnatomy, SpLegAngles spLegAngles);
+    SpLeftLeg(SpLegAnatomy spLegAnatomy, SpLegAngles spLegAngles, SpLegAngles minExtension, SpLegAngles maxExtension);
     //SpLeftLeg() = delete;
     ~SpLeftLeg() = default;
     
