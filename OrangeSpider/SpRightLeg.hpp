@@ -11,10 +11,6 @@ class SpRightLeg : public SpLeg
     //SpLeftLeg() = delete;
     ~SpRightLeg() = default;
     
-    static float getTopAngleFromHz(SpLegAngles spLegAngles);
-    static float getMidAngleFromHz(SpLegAngles spLegAngles);
-    static float getBotAngleFromHz(SpLegAngles spLegAngles);
-    
     protected:
     
     float getTopAngleFromHoriz();

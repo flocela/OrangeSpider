@@ -1,14 +1,13 @@
 #import <XCTest/XCTest.h>
-#import "../OrangeSpider/SpLeftLeg.hpp"
+#import "../OrangeSpider/SpRightLeg.hpp"
 
-#include <iostream>
 #include <numbers>
 
-@interface SpLeftLegTest : XCTestCase
+@interface SpRightLegTest : XCTestCase
 
 @end
 
-@implementation SpLeftLegTest
+@implementation SpRightLegTest
 
 - (void)setUp {
     // Put setup code here. This method is called before the invocation of each test method in the class.
@@ -23,14 +22,12 @@
     Basic setters and getters are in SpLegTest, the base class
 * */
 
-
-
 /* * 1.0 Test getting points on leg. * */
 - (void)testGetTopLengthTopPoint{
     SpLegAngles spLegAngles{0.34906f, 0.52360f, 0.87266f};
     SpLegAnatomy spLegAnatomy{7.0f, 12.0f, 8.0f};
     
-    SpLeftLeg spiderLeg{spLegAnatomy, spLegAngles};
+    SpRightLeg spiderLeg{spLegAnatomy, spLegAngles};
     
     XCTAssertEqual(glm::vec3(0.0f, 0.0f, 0.0f), spiderLeg.getTopLengthTopPoint());
 }
@@ -39,9 +36,9 @@
     SpLegAngles spLegAngles{0.34906f, 0.52360f, 0.87266f};
     SpLegAnatomy spLegAnatomy{7.0f, 12.0f, 8.0f};
     
-    SpLeftLeg spiderLeg{spLegAnatomy, spLegAngles};
+    SpRightLeg spiderLeg{spLegAnatomy, spLegAngles};
     
-    float topAngleFromHoriz = (std::numbers::pi_v<float>/2.0f) - 0.34906f;
+    float topAngleFromHoriz = (std::numbers::pi_v<float>/2.0f) + 0.34906f;
     
     XCTAssertEqual(
         glm::vec3(
@@ -56,10 +53,9 @@
     SpLegAngles spLegAngles{0.34906f, 0.52360f, 0.87266f};
     SpLegAnatomy spLegAnatomy{7.0f, 12.0f, 8.0f};
     
-    // spider leg
-    SpLeftLeg sl{spLegAnatomy, spLegAngles};
+    SpRightLeg sl{spLegAnatomy, spLegAngles};
     
-    float midAngleFromHoriz = 0.52360f - ((std::numbers::pi_v<float>/2.0f) - 0.34906f);
+    float midAngleFromHoriz = 0.52360f + ((std::numbers::pi_v<float>/2.0f) + 0.34906f);
     glm::vec3 midLengthTopPoint = sl.getMidLengthTopPoint();
     
     XCTAssertEqual(
@@ -75,10 +71,11 @@
     SpLegAngles spLegAngles{0.34906f, 0.52360f, 0.87266f};
     SpLegAnatomy spLegAnatomy{7.0f, 12.0f, 8.0f};
     
-    // spider leg
-    SpLeftLeg sl{spLegAnatomy, spLegAngles};
+    SpRightLeg sl{spLegAnatomy, spLegAngles};
     
-    float botAngleFromHoriz = (std::numbers::pi_v<float> * 2.0f) - ( (0.52360f - ((std::numbers::pi_v<float>/2.0f) - 0.34906f)) + (0.87266f) );
+    float botAngleFromHoriz = 
+        ((std::numbers::pi_v<float>/2.0f) + 0.34906f) + 0.52360f + 0.87266f;
+        
     glm::vec3 botLengthTopPoint = sl.getBotLengthTopPoint();
     
     XCTAssertEqual(
@@ -91,7 +88,6 @@
 }
 /* *1.0 End test getting points on leg. * */
 
-
 - (void)testPerformanceExample {
     // This is an example of a performance test case.
     [self measureBlock:^{
@@ -100,3 +96,5 @@
 }
 
 @end
+
+
