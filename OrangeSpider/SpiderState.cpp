@@ -134,4 +134,3 @@ glm::vec3 SpiderState::getBotLengthBotPoint(uint32_t legIndex)
 {
     return _topLegConnectionPoints[legIndex] +_legs[legIndex]->getBotLengthBotPoint();
 }
-

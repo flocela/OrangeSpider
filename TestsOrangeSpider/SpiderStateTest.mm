@@ -226,20 +226,11 @@
                     headElevation + (headHeight * ratioedLegConnectionElevation),
                     std::sin(legAnglesAboutHead[ii]) * headRadius);
                     
-        glm::vec3 midLengthTopPoint(
-                    topLengthTopPoint.x + legs[ii]->getMidLengthTopPoint().x,
-                    topLengthTopPoint.y + legs[ii]->getMidLengthTopPoint().y,
-                    topLengthTopPoint.z + legs[ii]->getMidLengthTopPoint().z);
+        glm::vec3 midLengthTopPoint = topLengthTopPoint + legs[ii]->getMidLengthTopPoint();
         
-        glm::vec3 botLengthTopPoint(
-                    topLengthTopPoint.x + legs[ii]->getBotLengthTopPoint().x,
-                    topLengthTopPoint.y + legs[ii]->getBotLengthTopPoint().y,
-                    topLengthTopPoint.z + legs[ii]->getBotLengthTopPoint().z);
+        glm::vec3 botLengthTopPoint = topLengthTopPoint + legs[ii]->getBotLengthTopPoint();
                     
-        glm::vec3 botLengthBotPoint(
-                    topLengthTopPoint.x + legs[ii]->getBotLengthBotPoint().x,
-                    topLengthTopPoint.y + legs[ii]->getBotLengthBotPoint().y,
-                    topLengthTopPoint.z + legs[ii]->getBotLengthBotPoint().z);
+        glm::vec3 botLengthBotPoint = topLengthTopPoint + legs[ii]->getBotLengthBotPoint();
         
         XCTAssertEqual(spiderState.getElevationBotOfHeadPos(),
                        glm::vec3(0.0f, headElevation, 0.0f));
