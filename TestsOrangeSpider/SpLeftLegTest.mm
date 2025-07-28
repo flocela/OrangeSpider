@@ -2,6 +2,7 @@
 #import "../OrangeSpider/SpLeftLeg.hpp"
 
 #include <iostream>
+#include <numbers>
 
 @interface SpLeftLegTest : XCTestCase
 
@@ -18,6 +19,7 @@
     // Put teardown code here. This method is called after the invocation of each test method in the class.
 }
 
+// 1.0 Test basic setters and getters for leg lengths and angles.
 - (void)testGetTopAngle {
     SpLegAngles spLegAngles{0.34906f, 0.52360f, 0.87266f}; // {20, 30, 50 degrees}
     SpLegAnatomy spLegAnatomy{7, 12, 8};
@@ -71,34 +73,36 @@
 
     XCTAssertEqual(spiderLeg.getBotLength(), 8);
 }
+// End 1.0 testing basic getters and setters. 
 
-- (void)testGetTopAngleFromHoriz{
+// 2.0 Test static methods that are called from protected methods as part of SpLeg's template method.
+- (void)testGetTopAngleFromHz{
     SpLegAngles spLegAngles{0.34906f, 0.52360f, 0.87266f};
-    SpLegAnatomy spLegAnatomy{7, 12, 8};
     
-    SpLeftLeg spiderLeg{spLegAnatomy, spLegAngles};
-    
-    XCTAssertEqualWithAccuracy(1.22173, spiderLeg.getTopAngleFromHoriz(), 0.000001f);
+    XCTAssertEqualWithAccuracy(
+        (std::numbers::pi_v<float>/2.0f) - 0.34906f,
+        SpLeftLeg::getTopAngleFromHz(spLegAngles), 0.000001f);
 }
 
-- (void)testGetMidAngleFromHoriz{
+- (void)testGetMidAngleFromHz{
     SpLegAngles spLegAngles{0.34906f, 0.52360f, 0.87266f};
-    SpLegAnatomy spLegAnatomy{7.0f, 12.0f, 8.0f};
     
-    SpLeftLeg spiderLeg{spLegAnatomy, spLegAngles};
-    
-    XCTAssertEqualWithAccuracy(0.52360f - (1.57079f - 0.34906f), spiderLeg.getMidAngleFromHoriz(), 0.000001f);
+    XCTAssertEqualWithAccuracy(
+        0.52360f - ((std::numbers::pi_v<float>/2.0f) - 0.34906f),
+        SpLeftLeg::getMidAngleFromHz(spLegAngles),
+        0.000001f);
 }
 
-- (void)testGetBotAngleFromHoriz{
+- (void)testGetBotAngleFromHz{
     SpLegAngles spLegAngles{0.34906f, 0.52360f, 0.87266f};
-    SpLegAnatomy spLegAnatomy{7.0f, 12.0f, 8.0f};
     
-    SpLeftLeg spiderLeg{spLegAnatomy, spLegAngles};
-    
-    XCTAssertEqualWithAccuracy(6.28319 - (0.87266f + (0.52360f - (1.57079f - 0.34906f))), spiderLeg.getBotAngleFromHoriz(), 0.000001f);
+    XCTAssertEqualWithAccuracy(
+        (std::numbers::pi_v<float> * 2.0f) - (0.52360f - ((std::numbers::pi_v<float>/2.0f) - 0.34906f)) - 0.87266f,
+        SpLeftLeg::getBotAngleFromHz(spLegAngles), 0.000001f);
 }
+// End 2.0 Test static methods.
 
+// 3.0 Test getting points on leg.
 - (void)testGetTopLengthTopPoint{
     SpLegAngles spLegAngles{0.34906f, 0.52360f, 0.87266f};
     SpLegAnatomy spLegAnatomy{7.0f, 12.0f, 8.0f};
@@ -114,7 +118,7 @@
     
     SpLeftLeg spiderLeg{spLegAnatomy, spLegAngles};
     
-    float topAngleFromHoriz = spiderLeg.getTopAngleFromHoriz();
+    float topAngleFromHoriz = (std::numbers::pi_v<float>/2.0f) - 0.34906f;
     
     XCTAssertEqual(
         glm::vec3(
@@ -132,7 +136,7 @@
     // spider leg
     SpLeftLeg sl{spLegAnatomy, spLegAngles};
     
-    float midAngleFromHoriz = sl.getMidAngleFromHoriz();
+    float midAngleFromHoriz = 0.52360f - ((std::numbers::pi_v<float>/2.0f) - 0.34906f);
     glm::vec3 midLengthTopPoint = sl.getMidLengthTopPoint();
     
     XCTAssertEqual(
@@ -144,7 +148,6 @@
     );
 }
 
-
 - (void)testGetBotLengthBotPoint{
     SpLegAngles spLegAngles{0.34906f, 0.52360f, 0.87266f};
     SpLegAnatomy spLegAnatomy{7.0f, 12.0f, 8.0f};
@@ -152,7 +155,7 @@
     // spider leg
     SpLeftLeg sl{spLegAnatomy, spLegAngles};
     
-    float botAngleFromHoriz = sl.getBotAngleFromHoriz();
+    float botAngleFromHoriz = (std::numbers::pi_v<float> * 2.0f) - ( (0.52360f - ((std::numbers::pi_v<float>/2.0f) - 0.34906f)) + (0.87266f) );
     glm::vec3 botLengthTopPoint = sl.getBotLengthTopPoint();
     
     XCTAssertEqual(
@@ -163,6 +166,7 @@
         sl.getBotLengthBotPoint()
     );
 }
+// 3.0 End test getting points on leg.
 
 
 - (void)testPerformanceExample {

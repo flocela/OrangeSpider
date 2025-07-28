@@ -62,6 +62,7 @@
 				SpLeg.cpp,
 				SpLegAnatomy.cpp,
 				SpLegAngles.cpp,
+				SpRightLeg.cpp,
 			);
 			target = 5C17663A2DA8439900BE1892 /* TestsOrangeSpider */;
 		};
