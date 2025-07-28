@@ -51,7 +51,6 @@ class SpiderState
     float getBotOfHeadElevation();
     
     glm::vec3 getElevationBotOfHeadPos();
-    glm::vec3 getRatioedElevation(float portionOfHeadAboveBottom);
     glm::vec3 getTopLengthTopPoint(uint32_t legIndex);
     glm::vec3 getMidLengthTopPoint(uint32_t legIndex);
     glm::vec3 getBotLengthTopPoint(uint32_t legIndex);

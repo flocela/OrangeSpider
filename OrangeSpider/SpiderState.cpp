@@ -1,5 +1,7 @@
 #include "SpiderState.hpp"
 
+#include <iostream>
+
 SpiderState::SpiderState(
     SpHeadAnatomy spHead,
     float headElevation, // bottom of head.
@@ -42,14 +44,14 @@ SpiderState::SpiderState(
     _legPolarAngles.push_back(angle5_r);
     _legPolarAngles.push_back(angle6_r);
     _legPolarAngles.push_back(angle7_r);
-    _topLegConnectionPoints.push_back(glm::vec3(std::sin(angle0_r)*spHead.getRadius(), _legConnectionElevation, std::cos(angle0_r)*spHead.getRadius()));
-    _topLegConnectionPoints.push_back(glm::vec3(std::sin(angle1_r)*spHead.getRadius(), _legConnectionElevation, std::cos(angle1_r)*spHead.getRadius()));
-    _topLegConnectionPoints.push_back(glm::vec3(std::sin(angle2_r)*spHead.getRadius(), _legConnectionElevation, std::cos(angle2_r)*spHead.getRadius()));
-    _topLegConnectionPoints.push_back(glm::vec3(std::sin(angle3_r)*spHead.getRadius(), _legConnectionElevation, std::cos(angle3_r)*spHead.getRadius()));
-    _topLegConnectionPoints.push_back(glm::vec3(std::sin(angle4_r)*spHead.getRadius(), _legConnectionElevation, std::cos(angle4_r)*spHead.getRadius()));
-    _topLegConnectionPoints.push_back(glm::vec3(std::sin(angle5_r)*spHead.getRadius(), _legConnectionElevation, std::cos(angle5_r)*spHead.getRadius()));
-    _topLegConnectionPoints.push_back(glm::vec3(std::sin(angle6_r)*spHead.getRadius(), _legConnectionElevation, std::cos(angle6_r)*spHead.getRadius()));
-    _topLegConnectionPoints.push_back(glm::vec3(std::sin(angle7_r)*spHead.getRadius(), _legConnectionElevation, std::cos(angle7_r)*spHead.getRadius()));
+    _topLegConnectionPoints.push_back(glm::vec3(std::cos(angle0_r)*spHead.getRadius(), _legConnectionElevation, std::sin(angle0_r)*spHead.getRadius()));
+    _topLegConnectionPoints.push_back(glm::vec3(std::cos(angle1_r)*spHead.getRadius(), _legConnectionElevation, std::sin(angle1_r)*spHead.getRadius()));
+    _topLegConnectionPoints.push_back(glm::vec3(std::cos(angle2_r)*spHead.getRadius(), _legConnectionElevation, std::sin(angle2_r)*spHead.getRadius()));
+    _topLegConnectionPoints.push_back(glm::vec3(std::cos(angle3_r)*spHead.getRadius(), _legConnectionElevation, std::sin(angle3_r)*spHead.getRadius()));
+    _topLegConnectionPoints.push_back(glm::vec3(std::cos(angle4_r)*spHead.getRadius(), _legConnectionElevation, std::sin(angle4_r)*spHead.getRadius()));
+    _topLegConnectionPoints.push_back(glm::vec3(std::cos(angle5_r)*spHead.getRadius(), _legConnectionElevation, std::sin(angle5_r)*spHead.getRadius()));
+    _topLegConnectionPoints.push_back(glm::vec3(std::cos(angle6_r)*spHead.getRadius(), _legConnectionElevation, std::sin(angle6_r)*spHead.getRadius()));
+    _topLegConnectionPoints.push_back(glm::vec3(std::cos(angle7_r)*spHead.getRadius(), _legConnectionElevation, std::sin(angle7_r)*spHead.getRadius()));
 }
 
 float SpiderState::getTopLength(int legIndex)
@@ -113,11 +115,6 @@ glm::vec3 SpiderState::getElevationBotOfHeadPos()
     return glm::vec3{0.0f, _headElevation, 0.0f};
 }
 
-glm::vec3 SpiderState::getRatioedElevation(float portionOfHeadAboveBottom)
-{
-    return glm::vec3(0.0f, _headElevation + (_head.getHeight() * portionOfHeadAboveBottom), 0.0f);
-}
-
 glm::vec3 SpiderState::getTopLengthTopPoint(uint32_t legIndex)
 {
     return _topLegConnectionPoints[legIndex];
@@ -125,16 +122,16 @@ glm::vec3 SpiderState::getTopLengthTopPoint(uint32_t legIndex)
 
 glm::vec3 SpiderState::getMidLengthTopPoint(uint32_t legIndex)
 {
-    return _legs[legIndex]->getMidLengthTopPoint();
+    return _topLegConnectionPoints[legIndex] +_legs[legIndex]->getMidLengthTopPoint();
 }
 
 glm::vec3 SpiderState::getBotLengthTopPoint(uint32_t legIndex)
 {
-    return glm::vec3(0.0f, 0.0f, 0.0f);
+    return _topLegConnectionPoints[legIndex] +_legs[legIndex]->getBotLengthTopPoint();
 }
 
-glm::vec3 getBotLengthBotPoint(uint32_t legIndex)
+glm::vec3 SpiderState::getBotLengthBotPoint(uint32_t legIndex)
 {
-    return glm::vec3(0.0f, 0.0f, 0.0f);
+    return _topLegConnectionPoints[legIndex] +_legs[legIndex]->getBotLengthBotPoint();
 }
 
