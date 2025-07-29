@@ -229,9 +229,9 @@
     for(int ii=0; ii<legs.size(); ++ii)
     {
         glm::vec3 topLengthTopPoint(
-                    std::cos(legAnglesAboutHead[ii]) * headRadius, 
+                    std::sin(legAnglesAboutHead[ii]) * headRadius, 
                     headElevation + (headHeight * ratioedLegConnectionElevation),
-                    std::sin(legAnglesAboutHead[ii]) * headRadius);
+                    std::cos(legAnglesAboutHead[ii]) * headRadius);
                     
         glm::vec3 midLengthTopPoint = topLengthTopPoint + legs[ii]->getM1Point();
         
@@ -250,6 +250,236 @@
         
         XCTAssertEqual(spiderState.getBotPoint(ii), botLengthBotPoint);
     }
+}
+
+- (void)testGetBottomPointsPerLeg {
+    SpLegAnatomy spLegAnatomy{7, 12, 8};
+    SpLegAngles spLegAngles{0.69813f, 1.74532f, 0.38888f}; //40, 100, 70
+    SpLegAngles minExtensionAngles{0.17453f, 2.00712f, 1.57080}; // 10, 140, 60
+    SpLegAngles maxExtensionAngles{1.30900f, 0.17453f, 0.26180}; // 75, 50, 10
+    
+    float headHeight = 3.0f;
+    float headRadius = 5.0f;
+    float headElevation = 9.227f;
+    float ratioedLegConnectionElevation = 0.0f;
+    
+    std::vector<std::shared_ptr<SpLeg>> legs{};
+    for(int ii=0; ii<8; ++ii)
+    {
+        
+        if (ii < 4)
+        {
+            legs.push_back(std::make_shared<SpLeftLeg>(spLegAnatomy, spLegAngles, minExtensionAngles, maxExtensionAngles));
+        }
+        else
+        {
+            legs.push_back(std::make_shared<SpRightLeg>(spLegAnatomy, spLegAngles, minExtensionAngles, maxExtensionAngles));
+        }
+    }
+    
+    std::vector<float> legAnglesAboutHead = {
+        0.17453f, //10 deg
+        1.04719f, //60
+        2.09439f, //120
+        2.44346f, //140
+        3.83972f, //220
+        4.18879f, //240
+        5.23598f, //300
+        6.10865f  //350
+    };
+    
+    SpiderState spiderState{
+        SpHeadAnatomy{headHeight, headRadius},
+        headElevation,
+        ratioedLegConnectionElevation,
+        legs[0],
+        legAnglesAboutHead[0], 
+        legs[1],
+        legAnglesAboutHead[1],
+        legs[2],
+        legAnglesAboutHead[2],
+        legs[3],
+        legAnglesAboutHead[3],
+        legs[4],
+        legAnglesAboutHead[4],
+        legs[5],
+        legAnglesAboutHead[5],
+        legs[6],
+        legAnglesAboutHead[6],
+        legs[7],
+        legAnglesAboutHead[7]
+    };
+    
+    std::vector<glm::vec3> bottomPointsPerLeg = spiderState.getBottomPointsPerLeg();
+    
+    for(int ii=0; ii<legs.size(); ++ii)
+    {
+        glm::vec3 connectionPoint(
+                    std::sin(legAnglesAboutHead[ii]) * headRadius, 
+                    headElevation + (headHeight * ratioedLegConnectionElevation),
+                    std::cos(legAnglesAboutHead[ii]) * headRadius);
+                    
+        glm::vec3 botPoint = connectionPoint + legs[ii]->getBotPoint();
+        
+        XCTAssertEqual(botPoint, bottomPointsPerLeg[ii]);
+        
+    }
+}
+
+
+- (void)testGetConnectionPointPerLeg {
+    SpLegAnatomy spLegAnatomy{7, 12, 8};
+    SpLegAngles spLegAngles{0.69813f, 1.74532f, 0.38888f}; //40, 100, 70
+    SpLegAngles minExtensionAngles{0.17453f, 2.00712f, 1.57080}; // 10, 140, 60
+    SpLegAngles maxExtensionAngles{1.30900f, 0.17453f, 0.26180}; // 75, 50, 10
+    
+    float headHeight = 3.0f;
+    float headRadius = 5.0f;
+    float headElevation = 9.227f;
+    float ratioedLegConnectionElevation = 0.0f;
+    
+    std::vector<std::shared_ptr<SpLeg>> legs{};
+    for(int ii=0; ii<8; ++ii)
+    {
+        
+        if (ii < 4)
+        {
+            legs.push_back(std::make_shared<SpLeftLeg>(spLegAnatomy, spLegAngles, minExtensionAngles, maxExtensionAngles));
+        }
+        else
+        {
+            legs.push_back(std::make_shared<SpRightLeg>(spLegAnatomy, spLegAngles, minExtensionAngles, maxExtensionAngles));
+        }
+    }
+    
+    std::vector<float> legAnglesAboutHead = {
+        0.17453f, //10 deg
+        1.04719f, //60
+        2.09439f, //120
+        2.44346f, //140
+        3.83972f, //220
+        4.18879f, //240
+        5.23598f, //300
+        6.10865f  //350
+    };
+    
+    SpiderState spiderState{
+        SpHeadAnatomy{headHeight, headRadius},
+        headElevation,
+        ratioedLegConnectionElevation,
+        legs[0],
+        legAnglesAboutHead[0], 
+        legs[1],
+        legAnglesAboutHead[1],
+        legs[2],
+        legAnglesAboutHead[2],
+        legs[3],
+        legAnglesAboutHead[3],
+        legs[4],
+        legAnglesAboutHead[4],
+        legs[5],
+        legAnglesAboutHead[5],
+        legs[6],
+        legAnglesAboutHead[6],
+        legs[7],
+        legAnglesAboutHead[7]
+    };
+    
+    std::vector<glm::vec3> connectionPointPerLeg = spiderState.getConnectionPointPerLeg();
+    
+    for(int ii=0; ii<legs.size(); ++ii)
+    {
+        glm::vec3 connectionPoint(
+                    std::sin(legAnglesAboutHead[ii]) * headRadius, 
+                    headElevation + (headHeight * ratioedLegConnectionElevation),
+                    std::cos(legAnglesAboutHead[ii]) * headRadius);
+        
+        XCTAssertEqual(connectionPoint, connectionPointPerLeg[ii]);
+        
+    }
+}
+
+- (void)testExtensionLengthsPerLeg {
+    SpLegAnatomy spLegAnatomy{7, 12, 8};
+    SpLegAngles spLegAngles{0.69813f, 1.74532f, 0.38888f}; //40, 100, 70
+    SpLegAngles minExtensionAngles{0.17453f, 2.44346f, 1.04719}; // 10, 140, 60
+    SpLegAngles maxExtensionAngles{1.22173f, 0.87266f, 0.17453}; // 70, 50, 10
+    
+    float headHeight = 3.0f;
+    float headRadius = 5.0f;
+    float headElevation = 9.227f;
+    float ratioedLegConnectionElevation = 0.0f;
+    
+    std::vector<std::shared_ptr<SpLeg>> legs{};
+    for(int ii=0; ii<8; ++ii)
+    {
+        
+        if (ii < 4)
+        {
+            legs.push_back(std::make_shared<SpLeftLeg>(spLegAnatomy, spLegAngles, minExtensionAngles, maxExtensionAngles));
+        }
+        else
+        {
+            legs.push_back(std::make_shared<SpRightLeg>(spLegAnatomy, spLegAngles, minExtensionAngles, maxExtensionAngles));
+        }
+    }
+    
+    std::vector<float> legAnglesAboutHead = {
+        0.17453f, //10 deg
+        1.04719f, //60
+        2.09439f, //120
+        2.44346f, //140
+        3.83972f, //220
+        4.18879f, //240
+        5.23598f, //300
+        6.10865f  //350
+    };
+    
+    SpiderState spiderState{
+        SpHeadAnatomy{headHeight, headRadius},
+        headElevation,
+        ratioedLegConnectionElevation,
+        legs[0],
+        legAnglesAboutHead[0], 
+        legs[1],
+        legAnglesAboutHead[1],
+        legs[2],
+        legAnglesAboutHead[2],
+        legs[3],
+        legAnglesAboutHead[3],
+        legs[4],
+        legAnglesAboutHead[4],
+        legs[5],
+        legAnglesAboutHead[5],
+        legs[6],
+        legAnglesAboutHead[6],
+        legs[7],
+        legAnglesAboutHead[7]
+    };
+    
+    std::vector<float> minExtensions = spiderState.getMinExtensionsPerLeg();
+    std::vector<float> maxExtensions = spiderState.getMaxExtensionsPerLeg();
+    
+    for(int ii=0; ii<legs.size(); ++ii)
+    {
+        SpLeftLeg genericLeg{spLegAnatomy, spLegAngles, minExtensionAngles, maxExtensionAngles};
+        
+        XCTAssertEqualWithAccuracy(
+            genericLeg.getMinExtension(headElevation),
+            minExtensions[ii],
+            0.000001f);
+    }
+    
+    for(int ii=0; ii<legs.size(); ++ii)
+    {
+        SpLeftLeg genericLeg{spLegAnatomy, spLegAngles, minExtensionAngles, maxExtensionAngles};
+        
+        XCTAssertEqualWithAccuracy(
+            genericLeg.getMaxExtension(headElevation),
+            maxExtensions[ii],
+            0.000001f);
+    }
+    
 }
 
 - (void)testPerformanceExample {

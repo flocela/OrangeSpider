@@ -44,16 +44,14 @@ SpiderState::SpiderState(
     _legPolarAngles.push_back(angle5_r);
     _legPolarAngles.push_back(angle6_r);
     _legPolarAngles.push_back(angle7_r);
-    _topLegConnectionPoints.push_back(glm::vec3(std::cos(angle0_r)*spHead.getRadius(), _legConnectionElevation, std::sin(angle0_r)*spHead.getRadius()));
-    _topLegConnectionPoints.push_back(glm::vec3(std::cos(angle1_r)*spHead.getRadius(), _legConnectionElevation, std::sin(angle1_r)*spHead.getRadius()));
-    _topLegConnectionPoints.push_back(glm::vec3(std::cos(angle2_r)*spHead.getRadius(), _legConnectionElevation, std::sin(angle2_r)*spHead.getRadius()));
-    _topLegConnectionPoints.push_back(glm::vec3(std::cos(angle3_r)*spHead.getRadius(), _legConnectionElevation, std::sin(angle3_r)*spHead.getRadius()));
-    _topLegConnectionPoints.push_back(glm::vec3(std::cos(angle4_r)*spHead.getRadius(), _legConnectionElevation, std::sin(angle4_r)*spHead.getRadius()));
-    _topLegConnectionPoints.push_back(glm::vec3(std::cos(angle5_r)*spHead.getRadius(), _legConnectionElevation, std::sin(angle5_r)*spHead.getRadius()));
-    _topLegConnectionPoints.push_back(glm::vec3(std::cos(angle6_r)*spHead.getRadius(), _legConnectionElevation, std::sin(angle6_r)*spHead.getRadius()));
-    _topLegConnectionPoints.push_back(glm::vec3(std::cos(angle7_r)*spHead.getRadius(), _legConnectionElevation, std::sin(angle7_r)*spHead.getRadius()));
-    
-    
+    _topLegConnectionPoints.push_back(glm::vec3(std::sin(angle0_r)*spHead.getRadius(), _legConnectionElevation, std::cos(angle0_r)*spHead.getRadius()));
+    _topLegConnectionPoints.push_back(glm::vec3(std::sin(angle1_r)*spHead.getRadius(), _legConnectionElevation, std::cos(angle1_r)*spHead.getRadius()));
+    _topLegConnectionPoints.push_back(glm::vec3(std::sin(angle2_r)*spHead.getRadius(), _legConnectionElevation, std::cos(angle2_r)*spHead.getRadius()));
+    _topLegConnectionPoints.push_back(glm::vec3(std::sin(angle3_r)*spHead.getRadius(), _legConnectionElevation, std::cos(angle3_r)*spHead.getRadius()));
+    _topLegConnectionPoints.push_back(glm::vec3(std::sin(angle4_r)*spHead.getRadius(), _legConnectionElevation, std::cos(angle4_r)*spHead.getRadius()));
+    _topLegConnectionPoints.push_back(glm::vec3(std::sin(angle5_r)*spHead.getRadius(), _legConnectionElevation, std::cos(angle5_r)*spHead.getRadius()));
+    _topLegConnectionPoints.push_back(glm::vec3(std::sin(angle6_r)*spHead.getRadius(), _legConnectionElevation, std::cos(angle6_r)*spHead.getRadius()));
+    _topLegConnectionPoints.push_back(glm::vec3(std::sin(angle7_r)*spHead.getRadius(), _legConnectionElevation, std::cos(angle7_r)*spHead.getRadius()));
 }
 
 float SpiderState::getTopLength(int legIndex)
@@ -117,7 +115,7 @@ glm::vec3 SpiderState::getElevationBotOfHeadPos()
     return glm::vec3{0.0f, _headElevation, 0.0f};
 }
 
-glm::vec3 SpiderState::getConnectionPoint(uint32_t legIndex)
+glm::vec3 SpiderState::getConnectionPoint(uint32_t legIndex) const
 {
     return _topLegConnectionPoints[legIndex];
 }
@@ -132,7 +130,48 @@ glm::vec3 SpiderState::getMid2Point(uint32_t legIndex)
     return _topLegConnectionPoints[legIndex] +_legs[legIndex]->getM2Point();
 }
 
-glm::vec3 SpiderState::getBotPoint(uint32_t legIndex)
+glm::vec3 SpiderState::getBotPoint(uint32_t legIndex) const
 {
     return _topLegConnectionPoints[legIndex] +_legs[legIndex]->getBotPoint();
 }
+
+std::vector<glm::vec3> SpiderState::getBottomPointsPerLeg() const
+{
+    std::vector<glm::vec3> bottomPoints{};
+    for(int ii=0; ii<8; ++ii)
+    {
+        bottomPoints.push_back(getBotPoint(ii));
+    }
+    return bottomPoints;
+}
+
+std::vector<glm::vec3> SpiderState::getConnectionPointPerLeg() const
+{
+    std::vector<glm::vec3> connectionPoints{};
+    for(int ii=0; ii<8; ++ii)
+    {
+        connectionPoints.push_back(getConnectionPoint(ii));
+    }
+    return connectionPoints;
+}
+
+std::vector<float> SpiderState::getMinExtensionsPerLeg() const
+{
+    std::vector<float> minExtensions{};
+    for(int ii=0; ii<8; ++ii)
+    {
+        minExtensions.push_back(_legs[ii]->getMinExtension(_legConnectionElevation));
+    }
+    return minExtensions;
+}
+
+std::vector<float> SpiderState::getMaxExtensionsPerLeg() const
+{
+    std::vector<float> maxExtensions{};
+    for(int ii=0; ii<8; ++ii)
+    {
+        maxExtensions.push_back(_legs[ii]->getMaxExtension(_legConnectionElevation));
+    }
+    return maxExtensions;
+}
+

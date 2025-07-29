@@ -49,7 +49,6 @@ class SpLeg
     
     SpLegAnatomy _spLegAnatomy;
    
-    
 };
 
 #endif /* SpLeg_hpp */
