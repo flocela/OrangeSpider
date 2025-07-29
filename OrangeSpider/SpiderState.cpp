@@ -52,6 +52,8 @@ SpiderState::SpiderState(
     _topLegConnectionPoints.push_back(glm::vec3(std::cos(angle5_r)*spHead.getRadius(), _legConnectionElevation, std::sin(angle5_r)*spHead.getRadius()));
     _topLegConnectionPoints.push_back(glm::vec3(std::cos(angle6_r)*spHead.getRadius(), _legConnectionElevation, std::sin(angle6_r)*spHead.getRadius()));
     _topLegConnectionPoints.push_back(glm::vec3(std::cos(angle7_r)*spHead.getRadius(), _legConnectionElevation, std::sin(angle7_r)*spHead.getRadius()));
+    
+    
 }
 
 float SpiderState::getTopLength(int legIndex)

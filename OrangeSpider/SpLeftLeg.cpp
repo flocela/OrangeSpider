@@ -14,11 +14,10 @@ float SpLeftLeg::getTopAngleFromHoriz()
 
 float SpLeftLeg::getMidAngleFromHoriz()
 {
-    return _spLegAngles.getMid1Angle() - getTopAngleFromHoriz();
+    return getTopAngleFromHoriz() - _spLegAngles.getMid1Angle();
 }
 
 float SpLeftLeg::getBotAngleFromHoriz()
 {   
-    return (std::numbers::pi_v<float> * 2.0f) - (_spLegAngles.getMid2Angle() + getMidAngleFromHoriz());
-    
+    return getMidAngleFromHoriz() - _spLegAngles.getMid2Angle();
 }

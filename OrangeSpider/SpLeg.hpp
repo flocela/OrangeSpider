@@ -28,6 +28,11 @@ class SpLeg
     glm::vec3 getBotLengthTopPoint();
     glm::vec3 getBotLengthBotPoint();
     
+    float getMinExtension(float topConnectionElevation);
+    float getMaxExtension(float topConnectionElevation);
+    bool minExtensionViable(float topConnectionElevation);
+    bool maxExtensionViable(float topConnectionElevation);
+    
     
     protected:
     
@@ -35,14 +40,15 @@ class SpLeg
     SpLegAngles _minExtensionAngles;
     SpLegAngles _maxExtensionAngles;
     
+    
     virtual float getTopAngleFromHoriz() = 0;
     virtual float getMidAngleFromHoriz() = 0;
     virtual float getBotAngleFromHoriz() = 0;
     
-    
     private:
     
     SpLegAnatomy _spLegAnatomy;
+   
     
 };
 
