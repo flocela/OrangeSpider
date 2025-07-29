@@ -28,7 +28,7 @@
     
     SpLeftLeg spiderLeg{spLegAnatomy, spLegAngles, minExtensionAngles, maxExtensionAngles};
 
-    XCTAssertEqual(spiderLeg.getTopAngle(), 0.34906f);
+    XCTAssertEqual(spiderLeg.getConnectionAngle(), 0.34906f);
 }
 
 - (void)testGetMidAngle {
@@ -39,7 +39,7 @@
     
     SpLeftLeg spiderLeg{spLegAnatomy, spLegAngles, minExtensionAngles, maxExtensionAngles};
 
-    XCTAssertEqual(spiderLeg.getMidAngle(), 0.52360f);
+    XCTAssertEqual(spiderLeg.getMid1Angle(), 0.52360f);
 }
 
 - (void)testGetBotAngle {
@@ -50,7 +50,7 @@
     
     SpLeftLeg spiderLeg{spLegAnatomy, spLegAngles, minExtensionAngles, maxExtensionAngles};
 
-    XCTAssertEqual(spiderLeg.getBotAngle(), 0.87266f);
+    XCTAssertEqual(spiderLeg.getMid2Angle(), 0.87266f);
 }
 
 - (void)testGetTopLength {
@@ -103,10 +103,10 @@
     // tempSpiderLeg uses minimum extension angles as its actual angles.
     SpLeftLeg tempSpiderLeg{spLegAnatomy, minExtensionAngles, minExtensionAngles, maxExtensionAngles};
     
-    float theta = acos((heightAtConnection + tempSpiderLeg.getBotLengthTopPoint().y)/8.0f); // 8.0f is bottom length
+    float theta = acos((heightAtConnection + tempSpiderLeg.getM2Point().y)/8.0f); // 8.0f is bottom length
     
     XCTAssertEqualWithAccuracy(
-            tempSpiderLeg.getBotLengthTopPoint().x - (8.0f * sin(theta)),
+            tempSpiderLeg.getM2Point().x - (8.0f * sin(theta)),
             spiderLeg.getMinExtension(heightAtConnection),
             0.000001f);
 }
@@ -124,10 +124,10 @@
     // tempSpiderLeg uses maximum extension angles as its actual angles.
     SpLeftLeg tempSpiderLeg{spLegAnatomy, maxExtensionAngles, minExtensionAngles, maxExtensionAngles};
     
-    float theta = acos((heightAtConnection + tempSpiderLeg.getBotLengthTopPoint().y)/8.0f); // 8.0f is bottom length
+    float theta = acos((heightAtConnection + tempSpiderLeg.getM2Point().y)/8.0f); // 8.0f is bottom length
     
     XCTAssertEqualWithAccuracy(
-            tempSpiderLeg.getBotLengthTopPoint().x + (8.0f * sin(theta)),
+            tempSpiderLeg.getM2Point().x + (8.0f * sin(theta)),
             spiderLeg.getMaxExtension(heightAtConnection),
             0.000001f);
 }

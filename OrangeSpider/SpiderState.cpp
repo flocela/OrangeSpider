@@ -74,17 +74,17 @@ float SpiderState::getBotLength(int legIndex)
     
 float SpiderState::getTopAngle(int legIndex)
 {
-    return _legs[legIndex]->getTopAngle();
+    return _legs[legIndex]->getConnectionAngle();
 }
 
 float SpiderState::getMidAngle(int legIndex)
 {
-    return _legs[legIndex]->getMidAngle();
+    return _legs[legIndex]->getMid1Angle();
 }
 
 float SpiderState::getBotAngle(int legIndex)
 {
-    return _legs[legIndex]->getBotAngle();
+    return _legs[legIndex]->getMid2Angle();
 }
 
 float SpiderState::getHeadHeight()
@@ -124,15 +124,15 @@ glm::vec3 SpiderState::getConnectionPoint(uint32_t legIndex)
 
 glm::vec3 SpiderState::getMid1Point(uint32_t legIndex)
 {
-    return _topLegConnectionPoints[legIndex] +_legs[legIndex]->getMidLengthTopPoint();
+    return _topLegConnectionPoints[legIndex] +_legs[legIndex]->getM1Point();
 }
 
 glm::vec3 SpiderState::getMid2Point(uint32_t legIndex)
 {
-    return _topLegConnectionPoints[legIndex] +_legs[legIndex]->getBotLengthTopPoint();
+    return _topLegConnectionPoints[legIndex] +_legs[legIndex]->getM2Point();
 }
 
 glm::vec3 SpiderState::getBotPoint(uint32_t legIndex)
 {
-    return _topLegConnectionPoints[legIndex] +_legs[legIndex]->getBotLengthBotPoint();
+    return _topLegConnectionPoints[legIndex] +_legs[legIndex]->getBotPoint();
 }

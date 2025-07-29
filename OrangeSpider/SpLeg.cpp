@@ -12,17 +12,17 @@ SpLeg::SpLeg(SpLegAnatomy spLegAnatomy, SpLegAngles spLegAngles, SpLegAngles min
     
 }
     
-float SpLeg::getTopAngle()
+float SpLeg::getConnectionAngle()
 {
     return _spLegAngles.getConnectionAngle();
 }
 
-float SpLeg::getMidAngle()
+float SpLeg::getMid1Angle()
 {
     return _spLegAngles.getMid1Angle();
 }
 
-float SpLeg::getBotAngle()
+float SpLeg::getMid2Angle()
 {
     return _spLegAngles.getMid2Angle();
 }
@@ -43,7 +43,7 @@ float SpLeg::getBotLength()
     return _spLegAnatomy.getBotLength();
 }
 
-glm::vec3 SpLeg::getTopLengthTopPoint()
+glm::vec3 SpLeg::getConnectionPoint()
 {
     return glm::vec3{
         0.0f,
@@ -52,7 +52,7 @@ glm::vec3 SpLeg::getTopLengthTopPoint()
     };
 }
 
-glm::vec3 SpLeg::getMidLengthTopPoint()
+glm::vec3 SpLeg::getM1Point()
 {
     glm::vec3 topPoint {0.0f, 0.0f, 0.0f};
     
@@ -63,10 +63,10 @@ glm::vec3 SpLeg::getMidLengthTopPoint()
     };
 }
 
-glm::vec3 SpLeg::getBotLengthTopPoint()
+glm::vec3 SpLeg::getM2Point()
 {
     // Mid length top point.
-    glm::vec3 mltp = getMidLengthTopPoint();
+    glm::vec3 mltp = getM1Point();
 
     return glm::vec3{
         mltp.x + cos(getMidAngleFromHoriz()) * _spLegAnatomy.getMidLength(),
@@ -75,10 +75,10 @@ glm::vec3 SpLeg::getBotLengthTopPoint()
     };
 }
 
-glm::vec3 SpLeg::getBotLengthBotPoint()
+glm::vec3 SpLeg::getBotPoint()
 {
     // Mid length top point.
-    glm::vec3 bltp = getBotLengthTopPoint();
+    glm::vec3 bltp = getM2Point();
     
     return glm::vec3{
         bltp.x + cos(getBotAngleFromHoriz()) * _spLegAnatomy.getBotLength(),

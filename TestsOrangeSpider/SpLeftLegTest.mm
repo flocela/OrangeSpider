@@ -34,7 +34,7 @@
     
     SpLeftLeg spiderLeg{spLegAnatomy, spLegAngles, minExtensionAngles, maxExtensionAngles};
     
-    XCTAssertEqual(glm::vec3(0.0f, 0.0f, 0.0f), spiderLeg.getTopLengthTopPoint());
+    XCTAssertEqual(glm::vec3(0.0f, 0.0f, 0.0f), spiderLeg.getConnectionPoint());
 }
 
 - (void)testGetMidLengthTopPoint{
@@ -52,7 +52,7 @@
             std::cos(topAngleFromHoriz)*spiderLeg.getTopLength(),
             std::sin(topAngleFromHoriz)*spiderLeg.getTopLength(),
             0.0f),
-        spiderLeg.getMidLengthTopPoint()
+        spiderLeg.getM1Point()
     );
 }
 
@@ -68,10 +68,10 @@
     
     XCTAssertEqual(
         glm::vec3(
-            sl.getMidLengthTopPoint().x + std::cos(midAngleFromHoriz)*sl.getMidLength(),
-            sl.getMidLengthTopPoint().y + std::sin(midAngleFromHoriz)*sl.getMidLength(),
+            sl.getM1Point().x + std::cos(midAngleFromHoriz)*sl.getMidLength(),
+            sl.getM1Point().y + std::sin(midAngleFromHoriz)*sl.getMidLength(),
             0.0f),
-        sl.getBotLengthTopPoint()
+        sl.getM2Point()
     );
 }
 
@@ -87,10 +87,10 @@
     
     XCTAssertEqual(
         glm::vec3(
-            sl.getBotLengthTopPoint().x + std::cos(botAngleFromHoriz)*sl.getBotLength(),
-            sl.getBotLengthTopPoint().y + std::sin(botAngleFromHoriz)*sl.getBotLength(),
+            sl.getM2Point().x + std::cos(botAngleFromHoriz)*sl.getBotLength(),
+            sl.getM2Point().y + std::sin(botAngleFromHoriz)*sl.getBotLength(),
             0.0f),
-        sl.getBotLengthBotPoint()
+        sl.getBotPoint()
     );
 }
 
@@ -109,7 +109,7 @@
             std::cos(topAngleFromHoriz)*spiderLeg.getTopLength(),
             std::sin(topAngleFromHoriz)*spiderLeg.getTopLength(),
             0.0f),
-        spiderLeg.getMidLengthTopPoint()
+        spiderLeg.getM1Point()
     );
 }
 
@@ -124,10 +124,10 @@
     float mid1AngleFromHoriz = (std::numbers::pi_v<float> / 2.0f) - 0.17453f - 2.00712f;
     
     XCTAssertEqual(
-        glm::vec3(sl.getMidLengthTopPoint().x + (std::cos(mid1AngleFromHoriz) * sl.getMidLength()),
-        sl.getMidLengthTopPoint().y + (std::sin(mid1AngleFromHoriz) * sl.getMidLength()),
+        glm::vec3(sl.getM1Point().x + (std::cos(mid1AngleFromHoriz) * sl.getMidLength()),
+        sl.getM1Point().y + (std::sin(mid1AngleFromHoriz) * sl.getMidLength()),
         0.0f),
-        sl.getBotLengthTopPoint()
+        sl.getM2Point()
     );
 }
 

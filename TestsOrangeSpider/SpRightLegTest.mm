@@ -31,7 +31,7 @@
     
     SpRightLeg spiderLeg{spLegAnatomy, spLegAngles, minExtensionAngles, maxExtensionAngles};
     
-    XCTAssertEqual(glm::vec3(0.0f, 0.0f, 0.0f), spiderLeg.getTopLengthTopPoint());
+    XCTAssertEqual(glm::vec3(0.0f, 0.0f, 0.0f), spiderLeg.getConnectionPoint());
 }
 
 - (void)testGetMidLengthTopPoint{
@@ -49,7 +49,7 @@
             std::cos(topAngleFromHoriz)*spiderLeg.getTopLength(),
             std::sin(topAngleFromHoriz)*spiderLeg.getTopLength(),
             0.0f),
-        spiderLeg.getMidLengthTopPoint()
+        spiderLeg.getM1Point()
     );
 }
 
@@ -62,14 +62,14 @@
     SpRightLeg spiderLeg{spLegAnatomy, spLegAngles, minExtensionAngles, maxExtensionAngles};
     
     float midAngleFromHoriz = 0.52360f + ((std::numbers::pi_v<float>/2.0f) + 0.34906f);
-    glm::vec3 midLengthTopPoint = spiderLeg.getMidLengthTopPoint();
+    glm::vec3 midLengthTopPoint = spiderLeg.getM1Point();
     
     XCTAssertEqual(
         glm::vec3(
             midLengthTopPoint.x + std::cos(midAngleFromHoriz)*spiderLeg.getMidLength(),
             midLengthTopPoint.y + std::sin(midAngleFromHoriz)*spiderLeg.getMidLength(),
             0.0f),
-        spiderLeg.getBotLengthTopPoint()
+        spiderLeg.getM2Point()
     );
 }
 
@@ -84,14 +84,14 @@
     float botAngleFromHoriz = 
         ((std::numbers::pi_v<float>/2.0f) + 0.34906f) + 0.52360f + 0.87266f;
         
-    glm::vec3 botLengthTopPoint = spiderLeg.getBotLengthTopPoint();
+    glm::vec3 botLengthTopPoint = spiderLeg.getM2Point();
     
     XCTAssertEqual(
         glm::vec3(
             botLengthTopPoint.x + std::cos(botAngleFromHoriz)*spiderLeg.getBotLength(),
             botLengthTopPoint.y + std::sin(botAngleFromHoriz)*spiderLeg.getBotLength(),
             0.0f),
-        spiderLeg.getBotLengthBotPoint()
+        spiderLeg.getBotPoint()
     );
 }
 /* *1.0 End test getting points on leg. * */
