@@ -54,63 +54,63 @@ SpiderState::SpiderState(
     _topLegConnectionPoints.push_back(glm::vec3(std::sin(angle7_r)*spHead.getRadius(), _legConnectionElevation, std::cos(angle7_r)*spHead.getRadius()));
 }
 
-float SpiderState::getTopLength(int legIndex)
+float SpiderState::getTopLength(int legIndex) const
 {
     return _legs[legIndex]->getTopLength();
 }
 
-float SpiderState::getMidLength(int legIndex)
+float SpiderState::getMidLength(int legIndex) const
 {
     return _legs[legIndex]->getMidLength();
 }
 
-float SpiderState::getBotLength(int legIndex)
+float SpiderState::getBotLength(int legIndex) const
 {
     return _legs[legIndex]->getBotLength();
 }
 
     
-float SpiderState::getTopAngle(int legIndex)
+float SpiderState::getTopAngle(int legIndex) const
 {
     return _legs[legIndex]->getConnectionAngle();
 }
 
-float SpiderState::getMidAngle(int legIndex)
+float SpiderState::getMidAngle(int legIndex) const
 {
     return _legs[legIndex]->getMid1Angle();
 }
 
-float SpiderState::getBotAngle(int legIndex)
+float SpiderState::getBotAngle(int legIndex) const
 {
     return _legs[legIndex]->getMid2Angle();
 }
 
-float SpiderState::getHeadHeight()
+float SpiderState::getHeadHeight() const
 {
     return _head.getHeight();
 }
 
-float SpiderState::getHeadRadius()
+float SpiderState::getHeadRadius() const
 {
     return _head.getRadius();
 }
 
-float SpiderState::getTopOfHeadElevation()
+float SpiderState::getTopOfHeadElevation() const
 {
     return _headElevation + _head.getHeight();
 }
 
-float SpiderState::getMidOfHeadElevation()
+float SpiderState::getMidOfHeadElevation() const
 {
     return _headElevation + (_head.getHeight()/2.0f);
 }
 
-float SpiderState::getBotOfHeadElevation()
+float SpiderState::getBotOfHeadElevation() const
 {
     return _headElevation;
 }
 
-glm::vec3 SpiderState::getElevationBotOfHeadPos()
+glm::vec3 SpiderState::getElevationBotOfHeadPos() const
 {
     return glm::vec3{0.0f, _headElevation, 0.0f};
 }
@@ -120,12 +120,12 @@ glm::vec3 SpiderState::getConnectionPoint(uint32_t legIndex) const
     return _topLegConnectionPoints[legIndex];
 }
 
-glm::vec3 SpiderState::getMid1Point(uint32_t legIndex)
+glm::vec3 SpiderState::getMid1Point(uint32_t legIndex) const
 {
     return _topLegConnectionPoints[legIndex] +_legs[legIndex]->getM1Point();
 }
 
-glm::vec3 SpiderState::getMid2Point(uint32_t legIndex)
+glm::vec3 SpiderState::getMid2Point(uint32_t legIndex) const
 {
     return _topLegConnectionPoints[legIndex] +_legs[legIndex]->getM2Point();
 }

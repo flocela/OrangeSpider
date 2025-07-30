@@ -9,8 +9,8 @@ class SpHeadAnatomy
     SpHeadAnatomy(float height, float radius);
     bool operator== (const SpHeadAnatomy& o) const;
     
-    float getHeight();
-    float getRadius();
+    float getHeight() const;
+    float getRadius() const;
     
     private:
     

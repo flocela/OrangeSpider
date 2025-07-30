@@ -5,12 +5,12 @@ SpHeadAnatomy::SpHeadAnatomy(float height, float radius)
     _radius{radius}
 {}
 
-float SpHeadAnatomy::getHeight()
+float SpHeadAnatomy::getHeight() const
 {
     return _height;
 }
 
-float SpHeadAnatomy::getRadius()
+float SpHeadAnatomy::getRadius() const
 {
     return _radius;
 }

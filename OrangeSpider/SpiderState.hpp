@@ -36,19 +36,19 @@ class SpiderState
         float angle7_r
     );
 
-    float getTopLength(int legIndex);
-    float getMidLength(int legIndex);
-    float getBotLength(int legIndex);
+    float getTopLength(int legIndex) const;
+    float getMidLength(int legIndex) const;
+    float getBotLength(int legIndex) const;
     
-    float getTopAngle(int legIndex);
-    float getMidAngle(int legIndex);
-    float getBotAngle(int legIndex);
+    float getTopAngle(int legIndex) const;
+    float getMidAngle(int legIndex) const;
+    float getBotAngle(int legIndex) const;
     
-    float getHeadHeight();
-    float getHeadRadius();
-    float getTopOfHeadElevation();
-    float getMidOfHeadElevation();
-    float getBotOfHeadElevation();
+    float getHeadHeight() const;
+    float getHeadRadius() const;
+    float getTopOfHeadElevation() const;
+    float getMidOfHeadElevation() const;
+    float getBotOfHeadElevation() const;
     
     std::vector<glm::vec3> getBottomPointsPerLeg() const;
     std::vector<glm::vec3> getConnectionPointPerLeg() const;
@@ -56,12 +56,12 @@ class SpiderState
     std::vector<float> getMaxExtensionsPerLeg() const;
     
     
-    glm::vec3 getElevationBotOfHeadPos();
+    glm::vec3 getElevationBotOfHeadPos() const;
     
     // Connection point for top of leg to spider head.
     glm::vec3 getConnectionPoint(uint32_t legIndex) const;
-    glm::vec3 getMid1Point(uint32_t legIndex);
-    glm::vec3 getMid2Point(uint32_t legIndex);
+    glm::vec3 getMid1Point(uint32_t legIndex) const;
+    glm::vec3 getMid2Point(uint32_t legIndex) const;
     glm::vec3 getBotPoint(uint32_t legIndex) const;
     
     private:
