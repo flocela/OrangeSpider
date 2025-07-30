@@ -6,6 +6,8 @@ class SpLegAngles
     public:
 
     SpLegAngles(float top_r, float mid_r, float bottom_r);
+    static SpLegAngles construct(float top_d, float mid_d, float bot_d);
+    
     bool operator==(const SpLegAngles& o) const;
     
     // Connection angle connects spider head to spider leg.

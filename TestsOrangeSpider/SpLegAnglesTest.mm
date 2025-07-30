@@ -1,5 +1,9 @@
 #import <XCTest/XCTest.h>
+
 #import "../OrangeSpider/SpLegAngles.hpp"
+
+#include <numbers>
+
 @interface SpLegAnglesTest : XCTestCase
 
 @end
@@ -14,6 +18,17 @@
 
     // Put teardown code here. This method is called after the invocation of each test method in the class.
 }
+
+- (void)testConstruct {
+    SpLegAngles angles = SpLegAngles::construct(20.0f, 30.0f, 50.0f);
+    
+    XCTAssertEqualWithAccuracy(20.0f * std::numbers::pi_v<float> / 180.0f, angles.getConnectionAngle(), 0.000001f);
+    
+    XCTAssertEqualWithAccuracy(30.0f * std::numbers::pi_v<float> / 180.0f, angles.getMid1Angle(), 0.000001f);
+    
+    XCTAssertEqualWithAccuracy(50.0f * std::numbers::pi_v<float> / 180.0f, angles.getMid2Angle(), 0.000001f);
+}
+
 
 - (void)testGetTopAngle {
     SpLegAngles spiderLeg{20.0f, 30.0f, 50.0f};

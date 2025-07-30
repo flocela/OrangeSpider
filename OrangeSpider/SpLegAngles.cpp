@@ -1,4 +1,5 @@
 #include "SpLegAngles.hpp"
+#include <numbers>
 
 SpLegAngles::SpLegAngles(float top_r, float mid_r, float bottom_r)
 :   _connectionAngle_r{top_r},
@@ -26,10 +27,13 @@ float SpLegAngles::getMid1Angle() const
 
 float SpLegAngles::getMid2Angle() const
 {
+    SpLegAngles::construct(1.0f, 1.0f, 1.0f);
     return _mid2Angle_r;
 }
 
 
+SpLegAngles SpLegAngles::construct(float top_d, float mid_d, float bot_d)
+{
+    return SpLegAngles(top_d * std::numbers::pi_v<float> / 180.0f, mid_d * std::numbers::pi_v<float> / 180.0f, bot_d * std::numbers::pi_v<float> / 180.0f);
+}
 
-
-    
