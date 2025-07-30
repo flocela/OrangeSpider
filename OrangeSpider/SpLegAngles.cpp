@@ -14,17 +14,17 @@ bool SpLegAngles::operator==(const SpLegAngles& o) const
            (_mid2Angle_r == o._mid2Angle_r);
 }
 
-float SpLegAngles::getConnectionAngle()
+float SpLegAngles::getConnectionAngle() const
 {
     return _connectionAngle_r;
 }
 
-float SpLegAngles::getMid1Angle()
+float SpLegAngles::getMid1Angle() const
 {
     return _mid1Angle_r;
 }
 
-float SpLegAngles::getMid2Angle()
+float SpLegAngles::getMid2Angle() const
 {
     return _mid2Angle_r;
 }

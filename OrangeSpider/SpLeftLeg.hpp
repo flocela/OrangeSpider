@@ -13,9 +13,9 @@ class SpLeftLeg : public SpLeg
     
     protected:
     
-    float getTopAngleFromHoriz();
-    float getMidAngleFromHoriz();
-    float getBotAngleFromHoriz();
+    float getTopAngleFromHoriz() const;
+    float getMidAngleFromHoriz() const;
+    float getBotAngleFromHoriz() const;
     
     private:
     

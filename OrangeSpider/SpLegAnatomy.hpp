@@ -8,9 +8,9 @@ class SpLegAnatomy
     SpLegAnatomy(float topLength, float midLength, float botLength);
     bool operator== (const SpLegAnatomy& o) const;
     
-    float getTopLength();
-    float getMidLength();
-    float getBotLength();
+    float getTopLength() const;
+    float getMidLength() const;
+    float getBotLength() const;
 
     private:
     

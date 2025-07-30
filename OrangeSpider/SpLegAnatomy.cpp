@@ -7,17 +7,17 @@ SpLegAnatomy::SpLegAnatomy(float topLength, float midLength, float botLength)
 {
 }
 
-float SpLegAnatomy::getTopLength()
+float SpLegAnatomy::getTopLength() const
 {
     return _topLength;
 }
 
-float SpLegAnatomy::getMidLength()
+float SpLegAnatomy::getMidLength() const
 {
     return _midLength;
 }
 
-float SpLegAnatomy::getBotLength()
+float SpLegAnatomy::getBotLength() const
 {
     return _botLength;
 }

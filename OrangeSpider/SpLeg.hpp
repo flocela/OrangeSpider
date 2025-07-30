@@ -13,25 +13,25 @@ class SpLeg
     SpLeg(SpLegAnatomy spLegAnatomy, SpLegAngles spLegAngles, SpLegAngles minExtension, SpLegAngles maxExtension);
     virtual ~SpLeg() = default;
     
-    float getConnectionAngle();
-    float getMid1Angle();
-    float getMid2Angle();
-    float getTopLength();
-    float getMidLength();
-    float getBotLength();
+    float getConnectionAngle() const;
+    float getMid1Angle() const;
+    float getMid2Angle() const;
+    float getTopLength() const;
+    float getMidLength() const;
+    float getBotLength() const;
 
     // Top length top point is always {0, 0, 0}.
     // It's the origin for the leg. So all other points
     // are from this origin.
-    glm::vec3 getConnectionPoint();
-    glm::vec3 getM1Point();
-    glm::vec3 getM2Point();
-    glm::vec3 getBotPoint();
+    glm::vec3 getConnectionPoint() const;
+    glm::vec3 getM1Point() const;
+    glm::vec3 getM2Point() const;
+    glm::vec3 getBotPoint() const;
     
-    float getMinExtension(float topConnectionElevation);
-    float getMaxExtension(float topConnectionElevation);
-    bool minExtensionViable(float topConnectionElevation);
-    bool maxExtensionViable(float topConnectionElevation);
+    float getMinExtension(float topConnectionElevation) const;
+    float getMaxExtension(float topConnectionElevation) const;
+    bool minExtensionViable(float topConnectionElevation) const;
+    bool maxExtensionViable(float topConnectionElevation) const;
     
     
     protected:
@@ -41,9 +41,9 @@ class SpLeg
     SpLegAngles _maxExtensionAngles;
     
     
-    virtual float getTopAngleFromHoriz() = 0;
-    virtual float getMidAngleFromHoriz() = 0;
-    virtual float getBotAngleFromHoriz() = 0;
+    virtual float getTopAngleFromHoriz() const = 0;
+    virtual float getMidAngleFromHoriz() const = 0;
+    virtual float getBotAngleFromHoriz() const = 0;
     
     private:
     

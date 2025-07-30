@@ -9,9 +9,9 @@ class SpLegAngles
     bool operator==(const SpLegAngles& o) const;
     
     // Connection angle connects spider head to spider leg.
-    float getConnectionAngle();
-    float getMid1Angle();
-    float getMid2Angle();
+    float getConnectionAngle() const;
+    float getMid1Angle() const;
+    float getMid2Angle() const;
     
     private:
     

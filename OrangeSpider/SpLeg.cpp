@@ -12,38 +12,38 @@ SpLeg::SpLeg(SpLegAnatomy spLegAnatomy, SpLegAngles spLegAngles, SpLegAngles min
     
 }
     
-float SpLeg::getConnectionAngle()
+float SpLeg::getConnectionAngle() const
 {
     return _spLegAngles.getConnectionAngle();
 }
 
-float SpLeg::getMid1Angle()
+float SpLeg::getMid1Angle() const
 {
     return _spLegAngles.getMid1Angle();
 }
 
-float SpLeg::getMid2Angle()
+float SpLeg::getMid2Angle() const
 {
     return _spLegAngles.getMid2Angle();
 }
 
 
-float SpLeg::getTopLength()
+float SpLeg::getTopLength() const
 {
     return _spLegAnatomy.getTopLength();
 }
 
-float SpLeg::getMidLength()
+float SpLeg::getMidLength() const
 {
     return _spLegAnatomy.getMidLength();
 }
 
-float SpLeg::getBotLength()
+float SpLeg::getBotLength() const
 {
     return _spLegAnatomy.getBotLength();
 }
 
-glm::vec3 SpLeg::getConnectionPoint()
+glm::vec3 SpLeg::getConnectionPoint() const
 {
     return glm::vec3{
         0.0f,
@@ -52,7 +52,7 @@ glm::vec3 SpLeg::getConnectionPoint()
     };
 }
 
-glm::vec3 SpLeg::getM1Point()
+glm::vec3 SpLeg::getM1Point() const
 {
     glm::vec3 topPoint {0.0f, 0.0f, 0.0f};
     
@@ -63,7 +63,7 @@ glm::vec3 SpLeg::getM1Point()
     };
 }
 
-glm::vec3 SpLeg::getM2Point()
+glm::vec3 SpLeg::getM2Point() const
 {
     // Mid length top point.
     glm::vec3 mltp = getM1Point();
@@ -75,7 +75,7 @@ glm::vec3 SpLeg::getM2Point()
     };
 }
 
-glm::vec3 SpLeg::getBotPoint()
+glm::vec3 SpLeg::getBotPoint() const
 {
     // Mid length top point.
     glm::vec3 bltp = getM2Point();
@@ -88,7 +88,7 @@ glm::vec3 SpLeg::getBotPoint()
 }
 
 // This is an absolute value
-float SpLeg::getMinExtension(float topConnectionElevation)
+float SpLeg::getMinExtension(float topConnectionElevation)  const
 {
     // These angles are min extension angles.
     float connectionAngleFromHoriz = (std::numbers::pi_v<float> / 2.0f) - _minExtensionAngles.getConnectionAngle();
@@ -110,7 +110,7 @@ float SpLeg::getMinExtension(float topConnectionElevation)
     return mid2Point.x - std::sqrt((getBotLength() * getBotLength()) - (mid2Point.y * mid2Point.y));
 }
 
-float SpLeg::getMaxExtension(float topConnectionElevation)
+float SpLeg::getMaxExtension(float topConnectionElevation) const
 {
     // These angles are maxextension angles.
     float connectionAngleFromHoriz = (std::numbers::pi_v<float> / 2.0f) - _maxExtensionAngles.getConnectionAngle();
@@ -133,12 +133,12 @@ float SpLeg::getMaxExtension(float topConnectionElevation)
     return mid2Point.x + std::sqrt((getBotLength() * getBotLength()) - (mid2Point.y * mid2Point.y));
 }
 
-bool SpLeg::minExtensionViable(float topConnectionElevation)
+bool SpLeg::minExtensionViable(float topConnectionElevation) const
 {
     return false;
 }
 
-bool SpLeg::maxExtensionViable(float topConnectionElevation)
+bool SpLeg::maxExtensionViable(float topConnectionElevation) const
 {
     return false;
 }
