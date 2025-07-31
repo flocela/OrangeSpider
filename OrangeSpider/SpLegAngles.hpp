@@ -15,6 +15,11 @@ class SpLegAngles
     float getMid1Angle() const;
     float getMid2Angle() const;
     
+    // From horizontal is the angle with first vector pointing in +ve x direction.
+    float getConnectionAngleFromHorizontal() const;
+    float getMid1AngleFromHorizontal() const;
+    float getMid2AngleFromHorizontal() const;
+    
     private:
     
     float _connectionAngle_r = 0.0f;

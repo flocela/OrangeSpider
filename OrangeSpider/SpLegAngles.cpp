@@ -31,6 +31,20 @@ float SpLegAngles::getMid2Angle() const
     return _mid2Angle_r;
 }
 
+float SpLegAngles::getConnectionAngleFromHorizontal() const
+{
+    return (std::numbers::pi_v<float>/2.0f) - _connectionAngle_r;
+}
+
+float SpLegAngles::getMid1AngleFromHorizontal() const
+{
+    return (std::numbers::pi_v<float>/2.0f) - _connectionAngle_r - _mid1Angle_r;
+}
+
+float SpLegAngles::getMid2AngleFromHorizontal() const
+{
+    return (std::numbers::pi_v<float>/2.0f) - _connectionAngle_r - _mid1Angle_r - _mid2Angle_r;
+}
 
 SpLegAngles SpLegAngles::construct(float top_d, float mid_d, float bot_d)
 {

@@ -73,6 +73,25 @@
     XCTAssertFalse(spiderLegA == spiderLegB);
 }
 
+- (void)testGetAnglesFromHorizontal{
+    SpLegAngles angles{12, 13, 14};
+    
+    XCTAssertEqualWithAccuracy(
+        std::numbers::pi_v<float>/2.0f - angles.getConnectionAngle(),
+        angles.getConnectionAngleFromHorizontal(),
+        0.000001f);
+        
+    XCTAssertEqualWithAccuracy(
+        std::numbers::pi_v<float>/2.0f - angles.getConnectionAngle() - angles.getMid1Angle(),
+        angles.getMid1AngleFromHorizontal(),
+        0.000001f);
+         
+    XCTAssertEqualWithAccuracy(
+        std::numbers::pi_v<float>/2.0f - angles.getConnectionAngle() - angles.getMid1Angle() - angles.getMid2Angle(),
+        angles.getMid2AngleFromHorizontal(),
+        0.000001f);
+}
+
 - (void)testPerformanceExample {
     // This is an example of a performance test case.
     [self measureBlock:^{
