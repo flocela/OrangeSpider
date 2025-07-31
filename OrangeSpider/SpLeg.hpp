@@ -4,6 +4,8 @@
 #include "SpLegAnatomy.hpp"
 #include "SpLegAngles.hpp"
 
+#include <vector>
+
 #include <glm/glm.hpp>
 
 class SpLeg
@@ -32,6 +34,10 @@ class SpLeg
     float getMaxExtension(float topConnectionElevation) const;
     bool minExtensionViable(float topConnectionElevation) const;
     bool maxExtensionViable(float topConnectionElevation) const;
+    
+    static std::vector<glm::vec3> getPoints(SpLegAnatomy lengths, SpLegAngles angles);
+    
+    static std::vector<glm::vec3> getPoints(SpLegAnatomy lengths, SpLegAngles angles, glm::vec3 connectionPoint);
     
     
     protected:

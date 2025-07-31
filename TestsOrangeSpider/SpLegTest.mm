@@ -20,6 +20,8 @@
 }
 
 /* * 1.0 Test basic setters and getters for leg lengths and angles. * */
+
+
 - (void)testGetTopAngle {
     SpLegAngles spLegAngles{0.34906f, 0.52360f, 0.87266f}; // {20, 30, 50 degrees}
     SpLegAngles minExtensionAngles{0.17453f, 2.00712f, 1.57080}; // 10, 115, 90
@@ -133,6 +135,61 @@
 }
 
 /* * 2.0 End: Leg extension lengths. * */
+
+
+/* * 3.0 Static methods. * */
+- (void)testGetPointsGivenLengthsAndAngles {
+    SpLegAngles angles = SpLegAngles::construct(20, 30, 50);
+    SpLegAnatomy lengths{10.0f, 11.0f, 20.0f};
+    
+    std::vector<glm::vec3> actualPoints = SpLeg::getPoints(lengths, angles);
+    
+    glm::vec3 connPt = {0.0f, 0.0f, 0.0f};
+    glm::vec3 m1Pt   = {cos(angles.getConnectionAngleFromHorizontal()) * lengths.getTopLength(),
+                        sin(angles.getConnectionAngleFromHorizontal()) * lengths.getTopLength(),
+                        0.0f};
+    glm::vec3 m2Pt   = {m1Pt.x + cos(angles.getMid1AngleFromHorizontal()) * lengths.getMidLength(),
+                        m1Pt.y + sin(angles.getMid1AngleFromHorizontal()) * lengths.getMidLength(),
+                        0.0f};
+    glm::vec3 botPt  = {m2Pt.x + cos(angles.getMid2AngleFromHorizontal()) * lengths.getBotLength(),
+                        m2Pt.y + sin(angles.getMid2AngleFromHorizontal()) * lengths.getBotLength(),
+                        0.0f};
+                        
+    XCTAssertEqual(connPt, actualPoints[0]);
+    XCTAssertEqual(m1Pt,   actualPoints[1]);
+    XCTAssertEqual(m2Pt,   actualPoints[2]);
+    XCTAssertEqual(botPt,  actualPoints[3]);
+    
+}
+
+- (void)testGetPointsGivenLengthsAnglesAndConnectionPoint{
+    SpLegAngles angles   = SpLegAngles::construct(20, 30, 50);
+    SpLegAnatomy lengths = SpLegAnatomy{10.0f, 11.0f, 20.0f};
+    glm::vec3 connPt     = glm::vec3{1.0f, 2.0f, 3.0f};
+    
+    std::vector<glm::vec3> actualPoints = SpLeg::getPoints(lengths, angles, connPt);
+    
+    std::vector<glm::vec3> pointsWithOriginConnectionPt = SpLeg::getPoints(lengths, angles, connPt);
+    
+    glm::vec3 m1Pt   = {connPt.x + cos(angles.getConnectionAngleFromHorizontal()) * lengths.getTopLength(),
+                        connPt.y + sin(angles.getConnectionAngleFromHorizontal()) * lengths.getTopLength(),
+                        connPt.z + 0.0f};
+    glm::vec3 m2Pt   = {m1Pt.x + cos(angles.getMid1AngleFromHorizontal()) * lengths.getMidLength(),
+                        m1Pt.y + sin(angles.getMid1AngleFromHorizontal()) * lengths.getMidLength(),
+                        m1Pt.z + 0.0f};
+    glm::vec3 botPt  = {m2Pt.x + cos(angles.getMid2AngleFromHorizontal()) * lengths.getBotLength(),
+                        m2Pt.y + sin(angles.getMid2AngleFromHorizontal()) * lengths.getBotLength(),
+                        m2Pt.z + 0.0f};
+                        
+    XCTAssertEqual(connPt, actualPoints[0]);
+    XCTAssertEqual(m1Pt,   actualPoints[1]);
+    XCTAssertEqual(m2Pt,   actualPoints[2]);
+    XCTAssertEqual(botPt,  actualPoints[3]);
+    
+}
+
+
+/* * 3.0 End static methods. * */
 
 - (void)testPerformanceExample {
     // This is an example of a performance test case.

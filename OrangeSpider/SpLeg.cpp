@@ -142,3 +142,39 @@ bool SpLeg::maxExtensionViable(float topConnectionElevation) const
 {
     return false;
 }
+
+std::vector<glm::vec3> SpLeg::getPoints(SpLegAnatomy lengths, SpLegAngles angles)
+{
+    glm::vec3 connPt = {0.0f, 0.0f, 0.0f};
+    
+    glm::vec3 m1Pt = {
+        cos(angles.getConnectionAngleFromHorizontal()) * lengths.getTopLength(),
+        sin(angles.getConnectionAngleFromHorizontal()) * lengths.getTopLength(),
+        0.0f 
+    };
+    
+    glm::vec3 m2Pt = {
+        m1Pt.x + (cos(angles.getMid1AngleFromHorizontal()) * lengths.getMidLength()),
+        m1Pt.y + (sin(angles.getMid1AngleFromHorizontal()) * lengths.getMidLength()),
+        0.0f 
+    };
+    
+    glm::vec3 m3Pt = {
+        m2Pt.x + (cos(angles.getMid2AngleFromHorizontal()) * lengths.getBotLength()),
+        m2Pt.y + (sin(angles.getMid2AngleFromHorizontal()) * lengths.getBotLength()),
+        0.0f 
+    };
+    return std::vector<glm::vec3>{connPt, m1Pt, m2Pt, m3Pt};
+}
+
+std::vector<glm::vec3> SpLeg::getPoints(SpLegAnatomy lengths, SpLegAngles angles, glm::vec3 connectionPoint)
+{
+    std::vector<glm::vec3> ptsWithOriginConnPt = SpLeg::getPoints(lengths, angles);
+    
+    return {
+        connectionPoint,
+        connectionPoint + ptsWithOriginConnPt[1],
+        connectionPoint + ptsWithOriginConnPt[2],
+        connectionPoint + ptsWithOriginConnPt[3]
+    };
+}
