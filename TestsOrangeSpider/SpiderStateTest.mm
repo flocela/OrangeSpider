@@ -3,6 +3,7 @@
 #import "../OrangeSpider/SpLeftLeg.hpp"
 
 #include <vector>
+#include <numbers>
 #include <iostream>
 #include <memory>
 
@@ -12,6 +13,8 @@
 
 @implementation SpiderStateTest
 
+float halfPi = std::numbers::pi_v<float> / 2.0f;
+
 - (void)setUp {
     // Put setup code here. This method is called before the invocation of each test method in the class.
 }
@@ -19,6 +22,123 @@
 - (void)tearDown {
 
     // Put teardown code here. This method is called after the invocation of each test method in the class.
+}
+
+// TEST METHOD: static SpiderState::getAcceptableAngles(float topConnectionElevation, SpLegAnatomy legAnatomy, SpLegAngles proposedAngles)
+// CASE: Where proposed angles result in a bottom point that is too low.
+- (void)testGetAcceptableAnglesGivenNonAcceptableAnglesCaseWhereBotTooLow {
+
+    // INPUTS // 
+    // Proposed angles are the prAngles.
+    SpLegAngles prAngles    = SpLegAngles::construct(10, 140, 60);
+    float elevation         = 9.0f;
+    SpLegAnatomy legLengths = SpLegAnatomy{7, 12, 8};
+    glm::vec3 connectionPoint = glm::vec3{0.0f, elevation, 0.0f};
+    
+    // TEST METHOD CALL // 
+    SpLegAngles acceptableAngles =
+        SpiderState::getAcceptableAngles(elevation, legLengths, prAngles);
+    
+    // Points given leg lengths and acceptable angles.
+    std::vector<glm::vec3> acceptablePoints = SpLeg::getPoints(legLengths, acceptableAngles, connectionPoint);
+    
+    // CALCULATE BOTTOM POINT TO COMPARE TO BOTTOM POINT FROM ACCEPTABLE ANGLES OUTPUT // 
+    std::vector<glm::vec3> prPoints = SpLeg::getPoints(legLengths, prAngles, glm::vec3{0.0f, elevation, 0.0f});
+    
+    // theta is angle from vertical (y axis going down)
+    // Determine if theta lies to the left of right of m2 point.
+    float theta = acos(prPoints[2].y / legLengths.getBotLength());
+    
+    // theta lies to the right of m2, then use thetaFromHzMax.
+    float thetaFromHzMax = std::numbers::pi_v<float> * 3.0f/2.0f + theta;
+    
+    // theta lies to the right of m2, then use thetaFromHzMax.
+    float thetaFromHzMin = std::numbers::pi_v<float> * 3.0f/2.0f - theta;
+    
+    float thetaFromHz = 
+        ( std::abs(thetaFromHzMax - prAngles.getMid2AngleFromHorizontal()) < std::abs(thetaFromHzMin - prAngles.getMid2AngleFromHorizontal())) ?
+        (thetaFromHzMax) :
+        (thetaFromHzMin);
+    
+    std::cout << "T1 thetaFromHz: " << theta << ", " << thetaFromHz << ": " << thetaFromHzMin << ", " << thetaFromHzMax << ", " << (prAngles.getMid1AngleFromHorizontal() - thetaFromHz) << std::endl;
+     
+    // COMPARE ACCEPTABLE ANGLE AT EACH POINT TO EXPECTED //
+    XCTAssertEqualWithAccuracy(
+        prAngles.getConnectionAngle(),
+        acceptableAngles.getConnectionAngle(),
+        0.000001f);
+    
+    XCTAssertEqualWithAccuracy(
+        prAngles.getMid1Angle(),
+        acceptableAngles.getMid1Angle(),
+        0.000001f);
+    
+    XCTAssertEqualWithAccuracy(
+        prAngles.getMid1AngleFromHorizontal() - thetaFromHz,
+        acceptableAngles.getMid2Angle(),
+        0.000001f);
+    
+    // BOTTOM POINT ELEVATION SHOULD BE ZERO //
+    XCTAssertEqualWithAccuracy(0.0f, acceptablePoints[3].y, 0.000001f);
+    
+}
+
+// TEST METHOD: static SpiderState::getAcceptableAngles(float topConnectionElevation, SpLegAnatomy legAnatomy, SpLegAngles proposedAngles)
+// CASE: Where proposed angles result in a bottom point that is too high.
+- (void)testGetAcceptableAnglesGivenNonAcceptableAnglesCaseWhereBotTooHigh {
+    
+    // INPUTS // 
+    // Proposed angles are the prAngles.
+    SpLegAngles prAngles      = SpLegAngles::construct(25, 110, 90);
+    SpLegAnatomy lengths      = SpLegAnatomy{7, 12, 8};
+    float topConnElevation    = 9.0f;
+    glm::vec3 connectionPoint = glm::vec3{0.0f, topConnElevation, 0.0f};
+    
+    // TEST METHOD CALL //
+    SpLegAngles acceptableAngles = SpiderState::getAcceptableAngles(topConnElevation, lengths, prAngles);
+    
+    // Points given leg lengths and acceptable angles.
+    std::vector<glm::vec3> acceptablePoints = SpLeg::getPoints(lengths, acceptableAngles, connectionPoint);
+    
+    // CALCULATE BOTTOM POINT TO COMPARE TO BOTTOM POINT FROM ACCEPTABLE ANGLES OUTPUT // 
+    std::vector<glm::vec3> prPoints = SpLeg::getPoints(lengths, prAngles, connectionPoint);
+    
+    // theta is angle from vertical (y axis going down)
+    // Determine if theta lies to the left of right of m2 point.
+    float theta = acos(prPoints[2].y / lengths.getBotLength());
+    
+    // theta lies to the right of m2, then use thetaFromHzMax.
+    float thetaFromHzMax = std::numbers::pi_v<float> * 3.0f/2.0f + theta;
+    
+    // theta lies to the right of m2, then use thetaFromHzMax.
+    float thetaFromHzMin = std::numbers::pi_v<float> * 3.0f/2.0f - theta;
+
+    float thetaFromHz = 
+        ( std::abs(thetaFromHzMax - prAngles.getMid2AngleFromHorizontal()) < std::abs(thetaFromHzMin - prAngles.getMid2AngleFromHorizontal())) ?
+        (thetaFromHzMax) :
+        (thetaFromHzMin);
+        
+    std::cout << "T2 thetaFromHz: " << theta << ", " << thetaFromHz << ": " << thetaFromHzMin << ", " << thetaFromHzMax << ", " << (prAngles.getMid1AngleFromHorizontal() - thetaFromHz) << std::endl;
+     
+    // COMPARE ACCEPTABLE ANGLE AT EACH POINT TO EXPECTED //
+    XCTAssertEqualWithAccuracy(
+        prAngles.getConnectionAngle(),
+        acceptableAngles.getConnectionAngle(),
+        0.000001f);
+    
+    XCTAssertEqualWithAccuracy(
+        prAngles.getMid1Angle(),
+        acceptableAngles.getMid1Angle(),
+        0.000001f);
+    
+    XCTAssertEqualWithAccuracy(
+        prAngles.getMid1AngleFromHorizontal() - thetaFromHz,
+        acceptableAngles.getMid2Angle(),
+        0.000001f);
+    
+    // BOTTOM POINT ELEVATION SHOULD BE ZERO //
+    XCTAssertEqualWithAccuracy(0.0f, acceptablePoints[3].y, 0.000001f);
+    
 }
 
 - (void)testGetLengthsAndAngles {

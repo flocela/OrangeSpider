@@ -1,6 +1,7 @@
 #include "SpiderState.hpp"
 
 #include <iostream>
+#include <numbers>
 
 SpiderState::SpiderState(
     SpHeadAnatomy spHead,
@@ -53,6 +54,8 @@ SpiderState::SpiderState(
     _topLegConnectionPoints.push_back(glm::vec3(std::sin(angle6_r)*spHead.getRadius(), _legConnectionElevation, std::cos(angle6_r)*spHead.getRadius()));
     _topLegConnectionPoints.push_back(glm::vec3(std::sin(angle7_r)*spHead.getRadius(), _legConnectionElevation, std::cos(angle7_r)*spHead.getRadius()));
 }
+
+std::vector<SpLegAngles> static getAcceptableAngles(float topConnectionElevation, SpLegAngles proposedAngles, SpLegAngles proposedMinExtensionAngles, SpLegAngles proposedMaxExtensionAngles);
 
 float SpiderState::getTopLength(int legIndex) const
 {
@@ -173,5 +176,52 @@ std::vector<float> SpiderState::getMaxExtensionsPerLeg() const
         maxExtensions.push_back(_legs[ii]->getMaxExtension(_legConnectionElevation));
     }
     return maxExtensions;
+}
+
+/*
+std::vector<SpLegAngles> getAcceptableAngles(float topConnectionElevation, SpLegAngles proposedAngles, SpLegAngles proposedMinExtensionAngles, SpLegAngles proposedMaxExtensionAngles)
+{
+    return std::vector<SpLegAngles>{SpLegAngles{0.0f, 0.0f, 0.0f}, SpLegAngles{0.0f, 0.0f, 0.0f}, SpLegAngles{0.0f, 0.0f, 0.0f}};
+}
+*/
+
+SpLegAngles SpiderState::getAcceptableAngles(float topConnectionElevation, SpLegAnatomy legAnatomy, SpLegAngles proposedAngles)
+{
+    glm::vec3 connectionPoint(0.0f, topConnectionElevation, 0.0f);
+    
+    // proposed angles from horizontal. Horizontal is the positive x direction.
+    float pConnectionAngleHoriz = (std::numbers::pi_v<float>/2.0f) - proposedAngles.getConnectionAngle();
+    float pM1AngleHoriz = pConnectionAngleHoriz - proposedAngles.getMid1Angle();
+    float pM2AngleHoriz = pM1AngleHoriz - proposedAngles.getMid2Angle();
+    
+    glm::vec3 m1Point(
+        connectionPoint.x + cos(pConnectionAngleHoriz) * legAnatomy.getTopLength(),
+        connectionPoint.y + sin(pConnectionAngleHoriz) * legAnatomy.getTopLength(),
+        0.0f
+    );
+
+    glm::vec3 m2Point(
+        m1Point.x + cos(pM1AngleHoriz) * legAnatomy.getMidLength(),
+        m1Point.y + sin(pM1AngleHoriz) * legAnatomy.getMidLength(),
+        0.0f
+    );
+    
+    // Point where bottom of leg will hit zero elevation is x0. Difference between m2Point.x and x0 is xDist;
+    float xDist = std::sqrt((legAnatomy.getBotLength() * legAnatomy.getBotLength()) - (m2Point.y * m2Point.y));
+    
+    float thetaFromVertical = asin(xDist/legAnatomy.getBotLength());
+    float maxThetaFromHz = (3.0f/2.0f * std::numbers::pi_v<float>) + thetaFromVertical;
+    float minThetaFromHz = (3.0f/2.0f * std::numbers::pi_v<float>) - thetaFromVertical;
+    
+    float acceptableBottomAngleFromHoriz =
+        (std::abs(pM2AngleHoriz - maxThetaFromHz) < std::abs(pM2AngleHoriz - minThetaFromHz)) ?
+        (maxThetaFromHz) :
+        (minThetaFromHz);
+        
+    return SpLegAngles{
+        proposedAngles.getConnectionAngle(),
+        proposedAngles.getMid1Angle(),
+        pM1AngleHoriz - acceptableBottomAngleFromHoriz
+        };
 }
 

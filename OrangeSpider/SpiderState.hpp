@@ -64,14 +64,18 @@ class SpiderState
     glm::vec3 getMid2Point(uint32_t legIndex) const;
     glm::vec3 getBotPoint(uint32_t legIndex) const;
     
+    // Acceptable angles means given the arguments, the leg's bottom point will be at elevation 0.
+    static SpLegAngles getAcceptableAngles(float topConnectionElevation, SpLegAnatomy legAnatomy, SpLegAngles proposedAngles);
+    
+    
     private:
         
-    SpHeadAnatomy          _head;
-    float                  _headElevation = 0.0f;
-    float                  _legConnectionElevation;
-    std::vector<std::shared_ptr<SpLeg>>     _legs; // TODO should this be shared or unique
-    std::vector<float>     _legPolarAngles;
-    std::vector<glm::vec3> _topLegConnectionPoints;
+    SpHeadAnatomy                       _head;
+    float                               _headElevation = 0.0f;
+    float                               _legConnectionElevation;
+    std::vector<std::shared_ptr<SpLeg>> _legs;
+    std::vector<float>                  _legPolarAngles;
+    std::vector<glm::vec3>              _topLegConnectionPoints;
 
 };
 
