@@ -1,6 +1,7 @@
 #ifndef first_app_hpp
 #define first_app_hpp
 
+
 #include <stdio.h>
 #include "lve_pipeline.hpp"
 #include "lve_window.hpp"
@@ -11,6 +12,7 @@
 //
 namespace lve
 {
+    
     class FirstApp
     {
         public:

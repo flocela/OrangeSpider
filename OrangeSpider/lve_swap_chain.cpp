@@ -8,6 +8,7 @@
 #include <set>
 #include <stdexcept>
 
+
 namespace lve {
 
 LveSwapChain::LveSwapChain(LveDevice &deviceRef, VkExtent2D extent)
@@ -214,6 +215,7 @@ void LveSwapChain::createImageViews() {
 }
 
 void LveSwapChain::createRenderPass() {
+
   VkAttachmentDescription depthAttachment{};
   depthAttachment.format = findDepthFormat();
   depthAttachment.samples = VK_SAMPLE_COUNT_1_BIT;
