@@ -20,9 +20,12 @@ namespace lve
     {
         glfwInit();
         glfwWindowHint(GLFW_CLIENT_API, GLFW_NO_API);
-        glfwWindowHint(GLFW_RESIZABLE, GLFW_FALSE);
+        glfwWindowHint(GLFW_RESIZABLE, GLFW_TRUE);
         
         window = glfwCreateWindow(width, height, windowName.c_str(), nullptr, nullptr);
+        glfwSetWindowUserPointer(window, this);
+        glfwSetFramebufferSizeCallback(window, framebufferResizeCallback);
+        
     }
 
     bool LveWindow::shouldClose()
@@ -41,6 +44,24 @@ namespace lve
     VkExtent2D LveWindow::getExtent()
     {
         return {static_cast<uint32_t>(width), static_cast<uint32_t>(height)};
+    }
+    
+    bool LveWindow::wasWindowResized()
+    {
+        return framebufferResized;
+    }
+    
+    void LveWindow::resetWindowResizedFlag()
+    {
+        framebufferResized = false;
+    }
+    
+    void LveWindow::framebufferResizeCallback(GLFWwindow* window, int width, int height)
+    {
+        auto lveWindow = reinterpret_cast<LveWindow*>(glfwGetWindowUserPointer(window));
+        lveWindow->framebufferResized = true;
+        lveWindow->width = width;
+        lveWindow->height = height;
     }
 
 }

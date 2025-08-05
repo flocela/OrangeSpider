@@ -9,16 +9,22 @@ namespace lve
 {
     struct LvePipelineConfigInfo
     {
+        LvePipelineConfigInfo() = default;
+        LvePipelineConfigInfo(const LvePipelineConfigInfo& o) = delete;
+        LvePipelineConfigInfo& operator=(const LvePipelineConfigInfo& o) = delete;
+        
+        VkPipelineViewportStateCreateInfo       viewportInfo;
         VkPipelineInputAssemblyStateCreateInfo  inputAssemblyInfo;
         VkPipelineRasterizationStateCreateInfo  rasterizationInfo;
         VkPipelineMultisampleStateCreateInfo    multisampleInfo;
         VkPipelineColorBlendStateCreateInfo     colorBlendInfo;
         VkPipelineDepthStencilStateCreateInfo   depthStencilInfo;
+        std::vector<VkDynamicState>             dynamicStateEnables;
+        VkPipelineDynamicStateCreateInfo        dynamicStateInfo;
+        VkPipelineLayout pipelineLayout = nullptr;
         
-        VkViewport                              viewport;
-        VkRect2D                                scissor;
+        
         VkPipelineColorBlendAttachmentState     colorBlendAttachment;
-        VkPipelineLayout                        pipelineLayout = nullptr;
         VkRenderPass                            renderPass = nullptr;
         uint32_t                                subpass = 0;
     };
@@ -39,7 +45,9 @@ namespace lve
         LvePipeline& operator=(const LvePipeline& o) = delete;
         
         void bind(VkCommandBuffer commandBuffer);
-        static LvePipelineConfigInfo defaultPipelineConfigInfo(uint32_t width, uint32_t height);
+        static void defaultPipelineConfigInfo(LvePipelineConfigInfo& configInfo);
+        
+        
         private:
         
         static std::vector<char> readFile(const std::string& filepath);
