@@ -22,7 +22,7 @@ namespace lve
     {
         vkDestroyPipelineLayout(lveDevice.device(), pipelineLayout, nullptr);
     }
-
+    
     void FirstApp::run()
     {
         while(!lveWindow.shouldClose())
@@ -38,9 +38,9 @@ namespace lve
     {
         std::vector<LveModel::Vertex> vertices
         {
-            {{0.0f, -0.5f}},
-            {{0.5f, 0.5f}},
-            {{-0.5f, 0.5f}}
+            {{0.0f, -0.5f}, {1.0f, 0.0f, 0.0f}},
+            {{0.5f, 0.5f}, {0.0f, 1.0f, 0.0f}},
+            {{-0.5f, 0.5f}, {0.0f, 0.0f, 1.0f}}
         };
         lveModel = std::make_unique<LveModel>(lveDevice, vertices);
     }
@@ -102,7 +102,9 @@ namespace lve
         {
             VkCommandBufferBeginInfo beginInfo{};
             beginInfo.sType = VK_STRUCTURE_TYPE_COMMAND_BUFFER_BEGIN_INFO;
-            if(vkBeginCommandBuffer(commandBuffers[i], &beginInfo) != VK_SUCCESS)
+            
+            
+            if( vkBeginCommandBuffer(commandBuffers[i], &beginInfo) != VK_SUCCESS )
             {
                 throw std::runtime_error("failed to begin recording command buffer!");
             }
@@ -123,11 +125,10 @@ namespace lve
             
             vkCmdBeginRenderPass(commandBuffers[i], &renderPassInfo, VK_SUBPASS_CONTENTS_INLINE);
             
-            // First thing to do in render pass is bind a pipeline.
-            lvePipeline->bind(commandBuffers[i]);
+            lvePipeline->bind(commandBuffers[i]); // link graphicsPipeline to commandBuffer
             
-            lveModel->bind(commandBuffers[i]);
-            lveModel->draw(commandBuffers[i]);
+            lveModel->bind(commandBuffers[i]); // vkCmdBindVertexBuffers
+            lveModel->draw(commandBuffers[i]); // vkCmdDraw
             
             // draw 3 vertices and only one instance.
             //vkCmdDraw(commandBuffers[i], 3, 1, 0, 0);
