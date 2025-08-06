@@ -6,7 +6,7 @@
 #include "lve_pipeline.hpp"
 #include "lve_window.hpp"
 #include "lve_swap_chain.hpp"
-#include "lve_model.hpp"
+#include "lve_game_object.hpp"
 #include <memory>
 #include <vector>
 //
@@ -30,14 +30,15 @@ namespace lve
         
         private:
         
-        void loadModels();
+        void loadGameObjects();
+        void renderGameObjects(VkCommandBuffer commadnBuffer);
         LveWindow lveWindow{WIDTH, HEIGHT, "Hello Vulkan!"};
         LveDevice lveDevice{lveWindow};
         std::unique_ptr<LveSwapChain> lveSwapChain;
         VkPipelineLayout pipelineLayout;
         std::unique_ptr<LvePipeline> lvePipeline;
         std::vector<VkCommandBuffer> commandBuffers;
-        std::unique_ptr<LveModel> lveModel;
+        std::vector<LveGameObject> gameObjects;
         
         void createPipelineLayout();
         void createPipeline();
