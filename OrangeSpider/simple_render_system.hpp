@@ -1,13 +1,33 @@
-//
-//  simple_render_system.hpp
-//  OrangeSpider
-//
-//  Created by Flo Maldonado on 8/6/25.
-//
+#pragma once
 
-#ifndef simple_render_system_hpp
-#define simple_render_system_hpp
+#include "lve_pipeline.hpp"
+#include "lve_game_object.hpp"
+#include "lve_device.hpp"
+#include <memory>
+#include <vector>
 
-#include <stdio.h>
-
-#endif /* simple_render_system_hpp */
+namespace lve
+{
+    
+    class SimpleRenderSystem
+    {
+        public:
+        
+        SimpleRenderSystem(LveDevice& device, VkRenderPass renderPass);
+        ~SimpleRenderSystem();
+        SimpleRenderSystem(const SimpleRenderSystem& o) = delete;
+        SimpleRenderSystem& operator=(const SimpleRenderSystem& o) = delete;
+        
+        void renderGameObjects(VkCommandBuffer commandBuffer, std::vector<LveGameObject>& gameObjects);
+        
+        private:
+        
+        void createPipelineLayout();
+        void createPipeline(VkRenderPass renderPass);
+        
+        LveDevice& lveDevice;
+        VkPipelineLayout pipelineLayout;
+        std::unique_ptr<LvePipeline> lvePipeline;
+        
+    };
+}

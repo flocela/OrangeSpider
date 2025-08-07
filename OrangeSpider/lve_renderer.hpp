@@ -25,10 +25,8 @@ namespace lve
         void drawFrame();
         void recreateSwapChain();
         
-        
-        
         uint32_t currentImageIndex;
-        bool isFrameStarted;
+        bool isFrameStarted = false;
         
         
         public:

@@ -3,7 +3,6 @@
 
 
 #include <stdio.h>
-#include "lve_pipeline.hpp"
 #include "lve_window.hpp"
 #include "lve_game_object.hpp"
 #include "lve_renderer.hpp"
@@ -32,17 +31,11 @@ namespace lve
         private:
         
         void loadGameObjects();
-        void renderGameObjects(VkCommandBuffer commadnBuffer);
         
         LveWindow lveWindow{WIDTH, HEIGHT, "Hello Vulkan!"};
         LveDevice lveDevice{lveWindow};
         LveRenderer lveRenderer{lveWindow, lveDevice};
-        VkPipelineLayout pipelineLayout;
-        std::unique_ptr<LvePipeline> lvePipeline;
         std::vector<LveGameObject> gameObjects;
-        
-        void createPipelineLayout();
-        void createPipeline();
         
     };
 }
