@@ -66,7 +66,6 @@ LveSwapChain::~LveSwapChain() {
 }
 
 VkResult LveSwapChain::acquireNextImage(uint32_t *imageIndex) {
-    std::cout << "imageIndex: " << *imageIndex << " -> ";
   vkWaitForFences(
       device.device(),
       1,
@@ -81,8 +80,6 @@ VkResult LveSwapChain::acquireNextImage(uint32_t *imageIndex) {
       imageAvailableSemaphores[currentFrame],  // must be a not signaled semaphore
       VK_NULL_HANDLE,
       imageIndex);
-      
-      std::cout << *imageIndex << std::endl;
 
   return result;
 }
@@ -307,6 +304,7 @@ void LveSwapChain::createFramebuffers() {
 
 void LveSwapChain::createDepthResources() {
   VkFormat depthFormat = findDepthFormat();
+  swapChainDepthFormat = depthFormat;
   VkExtent2D swapChainExtent = getSwapChainExtent();
 
   depthImages.resize(imageCount());
@@ -358,7 +356,6 @@ void LveSwapChain::createSyncObjects() {
   renderFinishedSemaphores.resize(MAX_FRAMES_IN_FLIGHT);
   inFlightFences.resize(MAX_FRAMES_IN_FLIGHT);
   imagesInFlight.resize(imageCount(), VK_NULL_HANDLE);
-  std::cout <<"imagesInflight.resize: " << imageCount() << std::endl;
 
   VkSemaphoreCreateInfo semaphoreInfo = {};
   semaphoreInfo.sType = VK_STRUCTURE_TYPE_SEMAPHORE_CREATE_INFO;
