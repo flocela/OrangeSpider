@@ -24,6 +24,8 @@ namespace lve
     {
         SimpleRenderSystem simpleRenderSystem{lveDevice, lveRenderer.getSwapChainRenderPass()};
         LveCamera camera{};
+        //camera.setViewDirection(glm::vec3(0.0f), glm::vec3(0.5f, 0.f, 1.f));
+        camera.setViewTarget(glm::vec3(-1.f, -2.f, 2.f), glm::vec3(0.0f, 0.0f, 2.5f));
         
         while(!lveWindow.shouldClose())
         {
