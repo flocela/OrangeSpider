@@ -68,7 +68,7 @@ namespace lve
         );
     }
     
-    void SimpleRenderSystem::renderGameObjects(VkCommandBuffer commandBuffer, std::vector<LveGameObject>& gameObjects)
+    void SimpleRenderSystem::renderGameObjects(VkCommandBuffer commandBuffer, std::vector<LveGameObject>& gameObjects, const LveCamera& camera)
     {
         lvePipeline->bind(commandBuffer);
         for (auto& obj: gameObjects)
@@ -77,7 +77,7 @@ namespace lve
             //obj.transform.rotation.z = glm::mod(obj.transform.rotation.z + 0.01f, glm::two_pi<float>());
             SimplePushConstantData push{};
             push.color = obj.color;
-            push.transform = obj.transform.mat4();
+            push.transform = camera.getProjection() * obj.transform.mat4();
             vkCmdPushConstants(
                 commandBuffer,
                 pipelineLayout,
