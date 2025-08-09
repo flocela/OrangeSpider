@@ -24,6 +24,7 @@ namespace lve
     
     void FirstApp::run()
     {
+    
         SimpleRenderSystem simpleRenderSystem{lveDevice, lveRenderer.getSwapChainRenderPass()};
         LveCamera camera{};
         
@@ -40,6 +41,8 @@ namespace lve
             auto newTime = std::chrono::high_resolution_clock::now();
             float frameTime = std::chrono::duration<float, std::chrono::seconds::period>(newTime - currentTime).count();
             currentTime = newTime;
+            
+            frameTime = glm::min(frameTime, MAX_FRAME_TIME);
             
             cameraController.moveInPlaneXZ(lveWindow.getGLFWwindow(), frameTime, viewerObject);
             camera.setViewYXZ(viewerObject.transform.translation, viewerObject.transform.rotation);    

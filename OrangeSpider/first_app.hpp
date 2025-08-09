@@ -36,6 +36,7 @@ namespace lve
         LveDevice lveDevice{lveWindow};
         LveRenderer lveRenderer{lveWindow, lveDevice};
         std::vector<LveGameObject> gameObjects;
+        float MAX_FRAME_TIME = 2.0f;
         
     };
 }
