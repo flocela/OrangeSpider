@@ -27,16 +27,33 @@ namespace lve
         _vertexCount = static_cast<uint32_t>(vertices.size());
         assert(_vertexCount >= 3 && "Vertex count must be at least 3");
         VkDeviceSize bufferSize = sizeof(vertices[0]) * _vertexCount;
+        
+        VkBuffer stagingBuffer;
+        VkDeviceMemory stagingBufferMemory;
         _lveDevice.createBuffer(
             bufferSize,
-            VK_BUFFER_USAGE_VERTEX_BUFFER_BIT,
+            VK_BUFFER_USAGE_TRANSFER_SRC_BIT,
             VK_MEMORY_PROPERTY_HOST_VISIBLE_BIT | VK_MEMORY_PROPERTY_HOST_COHERENT_BIT,
+            stagingBuffer,
+            stagingBufferMemory); // _vertexBufferMemory is VkDeviceMemory
+            
+            
+        void *data;
+        vkMapMemory(_lveDevice.device(), stagingBufferMemory, 0, bufferSize, 0, &data);
+        memcpy(data, vertices.data(), static_cast<size_t>(bufferSize));
+        vkUnmapMemory(_lveDevice.device(), stagingBufferMemory);
+        
+        _lveDevice.createBuffer(
+            bufferSize,
+            VK_BUFFER_USAGE_VERTEX_BUFFER_BIT | VK_BUFFER_USAGE_TRANSFER_DST_BIT,
+            VK_MEMORY_PROPERTY_DEVICE_LOCAL_BIT,
             _vertexBuffer,
             _vertexBufferMemory); // _vertexBufferMemory is VkDeviceMemory
-        void *data;
-        vkMapMemory(_lveDevice.device(), _vertexBufferMemory, 0, bufferSize, 0, &data);
-        memcpy(data, vertices.data(), static_cast<size_t>(bufferSize));
-        vkUnmapMemory(_lveDevice.device(), _vertexBufferMemory);
+            
+        _lveDevice.copyBuffer(stagingBuffer, _vertexBuffer, bufferSize);
+        
+        vkDestroyBuffer(_lveDevice.device(), stagingBuffer, nullptr);
+        vkFreeMemory(_lveDevice.device(), stagingBufferMemory, nullptr);
     }
     
     void LveModel::createIndexBuffers(const std::vector<uint32_t> &indices)
@@ -49,24 +66,33 @@ namespace lve
             return;
         }
         
-        
         VkDeviceSize bufferSize = sizeof(indices[0]) * _indexCount;
         
-        // creatBuffer makes memory on the GPU (on the device)
+        VkBuffer stagingBuffer;
+        VkDeviceMemory stagingBufferMemory;
         _lveDevice.createBuffer(
             bufferSize,
-            VK_BUFFER_USAGE_INDEX_BUFFER_BIT,
+            VK_BUFFER_USAGE_TRANSFER_SRC_BIT,
             VK_MEMORY_PROPERTY_HOST_VISIBLE_BIT | VK_MEMORY_PROPERTY_HOST_COHERENT_BIT,
+            stagingBuffer,
+            stagingBufferMemory); // _vertexBufferMemory is VkDeviceMemory
+            
+        void *data;
+        vkMapMemory(_lveDevice.device(), stagingBufferMemory, 0, bufferSize, 0, &data);
+        memcpy(data, indices.data(), static_cast<size_t>(bufferSize));
+        vkUnmapMemory(_lveDevice.device(), stagingBufferMemory);
+        
+        _lveDevice.createBuffer(
+            bufferSize,
+            VK_BUFFER_USAGE_INDEX_BUFFER_BIT | VK_BUFFER_USAGE_TRANSFER_DST_BIT,
+            VK_MEMORY_PROPERTY_DEVICE_LOCAL_BIT,
             _indexBuffer,
             _indexBufferMemory); // _vertexBufferMemory is VkDeviceMemory
             
-        // data is on the host (CPU)
-        void *data;
-        vkMapMemory(_lveDevice.device(), _indexBufferMemory, 0, bufferSize, 0, &data);
-        memcpy(data, indices.data(), static_cast<size_t>(bufferSize));
+        _lveDevice.copyBuffer(stagingBuffer, _indexBuffer, bufferSize);
         
-        // clean up data on the host.
-        vkUnmapMemory(_lveDevice.device(), _indexBufferMemory);
+        vkDestroyBuffer(_lveDevice.device(), stagingBuffer, nullptr);
+        vkFreeMemory(_lveDevice.device(), stagingBufferMemory, nullptr);
     }
 
     void LveModel::bind(VkCommandBuffer commandBuffer)
