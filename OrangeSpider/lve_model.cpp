@@ -1,5 +1,9 @@
 #include "lve_model.hpp"
 
+// Find tiny_obj_loader.h at /Users/flo/LocalDocuments/Projects/VulkanLearning/tinyobjloader
+#define TINYOBJECTLOADER_IMPLEMENTATION
+#include <tiny_obj_loader.h>
+
 #include <cassert>
 namespace lve
 {
