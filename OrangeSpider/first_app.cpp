@@ -21,7 +21,7 @@ namespace lve
     
     FirstApp::~FirstApp()
     {}
-    
+
     void FirstApp::run()
     {
     
@@ -65,11 +65,11 @@ namespace lve
     void FirstApp::loadGameObjects()
     {
     
-        std::shared_ptr<LveModel> lveModel = LveModel::createModelFromFile(lveDevice, "/Users/flo/LocalDocuments/Projects/VulkanLearning/OrangeSpider/OrangeSpider/models/smooth_vase.obj");
+        std::shared_ptr<LveModel> lveModel = LveModel::createModelFromFile(lveDevice, "/Users/flo/LocalDocuments/Projects/VulkanLearning/OrangeSpider/OrangeSpider/models/flat_vase.obj");
             
         auto gameObject = LveGameObject::createGameObject();
         gameObject.model = lveModel;
-        gameObject.transform.translation = {.0f, .0f, 2.5f};
+        gameObject.transform.translation = {0.0f, .5f, 1.5f};
         gameObject.transform.scale = {.5f, .5f, .5f};
         
         gameObjects.push_back(std::move(gameObject));

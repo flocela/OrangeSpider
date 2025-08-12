@@ -158,7 +158,14 @@ namespace lve
 
     std::vector<VkVertexInputAttributeDescription> LveModel::Vertex::createAttributeDescriptions()
     {
-        std::vector<VkVertexInputAttributeDescription> attributeDescriptions(2);
+        std::vector<VkVertexInputAttributeDescription> attributeDescriptions{};
+        
+        attributeDescriptions.push_back({0, 0, VK_FORMAT_R32G32B32_SFLOAT, offsetof(Vertex, position)});
+        attributeDescriptions.push_back({1, 0, VK_FORMAT_R32G32B32_SFLOAT, offsetof(Vertex, color)});
+        attributeDescriptions.push_back({2, 0, VK_FORMAT_R32G32B32_SFLOAT, offsetof(Vertex, normal)});
+        attributeDescriptions.push_back({3, 0, VK_FORMAT_R32G32_SFLOAT,    offsetof(Vertex, uv)});
+        
+        /*
         attributeDescriptions[0].binding = 0;
         attributeDescriptions[0].location = 0;
         attributeDescriptions[0].format = VK_FORMAT_R32G32B32_SFLOAT;
@@ -167,6 +174,8 @@ namespace lve
         attributeDescriptions[1].location = 1;
         attributeDescriptions[1].format = VK_FORMAT_R32G32B32_SFLOAT;
         attributeDescriptions[1].offset = offsetof(Vertex, color);
+        */
+        
         return attributeDescriptions;
     }
     
@@ -180,18 +189,16 @@ namespace lve
     
     void LveModel::Builder::loadModel(const std::string &filepath)
     {
-    
         tinyobj::attrib_t attrib;
         std::vector<tinyobj::shape_t> shapes;
         std::vector<tinyobj::material_t> materials;
         std::string warn, err;
         
-        
         if( !tinyobj::LoadObj(&attrib, &shapes, &materials, &warn, &err, filepath.c_str()))
         {
             throw std::runtime_error(warn + err);
         }
-    
+        
         vertices.clear();
         indices.clear();
         
@@ -201,7 +208,6 @@ namespace lve
         {
             for (const auto &index : shape.mesh.indices)
             {
-        
                 Vertex vertex{};
                 
                 if(index.vertex_index >= 0)
@@ -213,20 +219,14 @@ namespace lve
                         attrib.vertices[3 * index.vertex_index + 2]
                     };
                     
-                    auto colorIndex = 3 * index.vertex_index + 2;
-                    if(colorIndex < attrib.colors.size())
+                    vertex.color =
                     {
-                        vertex.color =
-                        {
-                            attrib.colors[colorIndex -2],
-                            attrib.colors[colorIndex -1],
-                            attrib.colors[colorIndex -0]
-                        };
-                    }
-                    else
-                    {
-                        vertex.color = {1.f, 1.f, 1.f};
-                    }
+                        attrib.colors[3 * index.vertex_index + 0],
+                        attrib.colors[3 * index.vertex_index + 1],
+                        attrib.colors[3 * index.vertex_index + 2]
+                    };
+                    
+                   
                 }
                 
                 if(index.normal_index >= 0)
@@ -239,6 +239,7 @@ namespace lve
                     };
                 }
                 
+                /*
                 if(index.texcoord_index >= 0)
                 {
                     vertex.uv =
@@ -247,19 +248,16 @@ namespace lve
                         attrib.texcoords[2 * index.normal_index + 1]
                     };
                 }
+                */
                 
                 if(uniqueVertices.count(vertex) == 0)
                 {
                     uniqueVertices[vertex] = static_cast<uint32_t>(vertices.size());
                     vertices.push_back(vertex);
                 }
-                
                 indices.push_back(uniqueVertices[vertex]);
-                
             }
         }
-        
-        
     }
     
                                
