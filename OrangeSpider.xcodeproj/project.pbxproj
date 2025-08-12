@@ -74,6 +74,9 @@
 			exceptions = (
 				5C1766662DA84F1800BE1892 /* Exceptions for "OrangeSpider" folder in "TestsOrangeSpider" target */,
 			);
+			explicitFolders = (
+				models,
+			);
 			path = OrangeSpider;
 			sourceTree = "<group>";
 		};
