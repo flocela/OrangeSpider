@@ -69,8 +69,8 @@ namespace lve
             
         auto gameObject = LveGameObject::createGameObject();
         gameObject.model = lveModel;
-        gameObject.transform.translation = {0.0f, .5f, 1.5f};
-        gameObject.transform.scale = {.5f, .5f, .5f};
+        gameObject.transform.translation = {0.0f, .5f, 2.5f};
+        gameObject.transform.scale = {3.f, 3.f, 3.f};
         
         gameObjects.push_back(std::move(gameObject));
     }
