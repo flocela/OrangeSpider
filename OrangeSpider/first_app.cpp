@@ -14,6 +14,13 @@
 
 namespace lve
 {
+
+    struct GlobalUbo
+    {
+        glm::mat4 projectionView{1.f};
+        glm::vec3 lightDirection = glm::normalize(glm::vec3{1.f, -3.f, -1.f});
+    };
+
     FirstApp::FirstApp()
     {
         loadGameObjects();
@@ -24,6 +31,17 @@ namespace lve
 
     void FirstApp::run()
     {
+    
+        LveBuffer globalUboBuffer{
+            lveDevice,
+            sizeof(GlobalUbo),
+            LveSwapChain::MAX_FRAMES_IN_FLIGHT,
+            VK_BUFFER_USAGE_UNIFORM_BUFFER_BIT,
+            VK_MEMORY_PROPERTY_HOST_VISIBLE_BIT,
+            lveDevice.properties.limits.minUniformBufferOffsetAlignment
+        };
+        
+        globalUboBuffer.map();
     
         SimpleRenderSystem simpleRenderSystem{lveDevice, lveRenderer.getSwapChainRenderPass()};
         LveCamera camera{};
@@ -52,8 +70,23 @@ namespace lve
             
             if (auto commandBuffer = lveRenderer.beginFrame())
             {
+                int frameIndex = lveRenderer.getFrameIndex();
+                FrameInfo frameInfo{
+                    frameIndex,
+                    frameTime,
+                    commandBuffer,
+                    camera};
+                
+                //update
+                GlobalUbo ubo{};
+                ubo.projectionView = camera.getProjection() * camera.getView();
+                globalUboBuffer.writeToIndex(&ubo, frameIndex);
+                globalUboBuffer.flushIndex(frameIndex);
+            
+            
+                // render
                 lveRenderer.beginSwapChainRenderPass(commandBuffer);
-                simpleRenderSystem.renderGameObjects(commandBuffer, gameObjects, camera);
+                simpleRenderSystem.renderGameObjects(frameInfo, gameObjects);
                 lveRenderer.endSwapChainRenderPass(commandBuffer);
                 lveRenderer.endFrame();
             }
@@ -65,14 +98,19 @@ namespace lve
     void FirstApp::loadGameObjects()
     {
     
-        std::shared_ptr<LveModel> lveModel = LveModel::createModelFromFile(lveDevice, "/Users/flo/LocalDocuments/Projects/VulkanLearning/OrangeSpider/OrangeSpider/models/flat_vase.obj");
-            
-        auto gameObject = LveGameObject::createGameObject();
-        gameObject.model = lveModel;
-        gameObject.transform.translation = {0.0f, .5f, 2.5f};
-        gameObject.transform.scale = {3.f, 3.f, 3.f};
-        
-        gameObjects.push_back(std::move(gameObject));
+        std::shared_ptr<LveModel> lveModel = LveModel::createModelFromFile(lveDevice, "/Users/flo/LocalDocuments/Projects/VulkanLearning/GalaTutorial/GalaTutorial/models/flat_vase.obj");
+        auto flatVase = LveGameObject::createGameObject();
+        flatVase.model = lveModel;
+        flatVase.transform.translation = {-.5f, .5f, 2.5f};
+        flatVase.transform.scale = {3.f, 1.5f, 3.f};
+        gameObjects.push_back(std::move(flatVase));
+
+        lveModel = LveModel::createModelFromFile(lveDevice, "/Users/flo/LocalDocuments/Projects/VulkanLearning/GalaTutorial/GalaTutorial/models/smooth_vase.obj");
+        auto smoothVase = LveGameObject::createGameObject();
+        smoothVase.model = lveModel;
+        smoothVase.transform.translation = {.5f, .5f, 2.5f};
+        smoothVase.transform.scale = {3.f, 1.5f, 3.f};
+        gameObjects.push_back(std::move(smoothVase));
     }
 
 }// namespace lve
