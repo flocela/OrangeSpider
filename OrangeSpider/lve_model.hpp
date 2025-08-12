@@ -33,39 +33,6 @@ namespace lve
                         uv == other.uv;
             }
             
-            struct HashFunction
-            {
-                size_t operator()(const Vertex& vert) const
-                {
-                    uint32_t hashNum = 7;
-                    hashNum = hashNum * 31 * vert.position.x;
-                    hashNum %= 1000000;
-                    hashNum = hashNum * 31 * vert.position.y;
-                    hashNum %= 1000000;
-                    hashNum = hashNum * 31 * vert.position.z;
-                    hashNum %= 1000000;
-                    hashNum = hashNum * 31 * vert.color.x;
-                    hashNum %= 1000000;
-                    hashNum = hashNum * 31 * vert.color.y;
-                    hashNum %= 1000000;
-                    hashNum = hashNum * 31 * vert.color.z;
-                    hashNum %= 1000000;
-                    hashNum = hashNum * 31 * vert.normal.x;
-                    hashNum %= 1000000;
-                    hashNum = hashNum * 31 * vert.normal.y;
-                    hashNum %= 1000000;
-                    hashNum = hashNum * 31 * vert.normal.z;
-                    hashNum %= 1000000;
-                    hashNum = hashNum * 31 * vert.uv.x;
-                    hashNum %= 1000000;
-                    hashNum = hashNum * 31 * vert.uv.y;
-                    hashNum %= 1000000;
-                  
-                  return hashNum;
-                }
-            };
-            
-            
         };
         
         struct Builder

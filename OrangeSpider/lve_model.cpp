@@ -6,10 +6,27 @@
 #define GLM_ENABLE_EXPERIMENTAL
 #include <glm/gtx/hash.hpp>
 
+#include "lve_utils.hpp"
 #include <cassert>
 #include <iostream>
 #include <unordered_map>
-#include <map>
+
+
+// Used for unordered_map uniqueVertices key's (LveModel::Vertex) hash function.
+namespace std
+{
+    template<>
+    struct hash<lve::LveModel::Vertex>
+    {
+        size_t operator()(lve::LveModel::Vertex const &vertex) const
+        {
+            size_t seed = 0;
+            lve::hashCombine(seed, vertex.position, vertex.color, vertex.normal, vertex.uv);
+            return seed;
+        }
+    };
+}
+
 
 namespace lve
 {
@@ -157,7 +174,6 @@ namespace lve
     {
         Builder builder{};
         builder.loadModel(filepath);
-        std::cout << "Vertex count: " << builder.vertices.size() << "\n";
         return std::make_unique<LveModel>(device, builder);
     }
     
@@ -179,7 +195,7 @@ namespace lve
         vertices.clear();
         indices.clear();
         
-        std::unordered_map<Vertex, uint32_t, Vertex::HashFunction> uniqueVertices{};
+        std::unordered_map<Vertex, uint32_t> uniqueVertices{};
         
         for(const auto& shape : shapes)
         {
