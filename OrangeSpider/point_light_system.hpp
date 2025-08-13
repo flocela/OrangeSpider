@@ -19,6 +19,7 @@ namespace lve
         PointLightSystem(const PointLightSystem& o) = delete;
         PointLightSystem& operator=(const PointLightSystem& o) = delete;
         
+        void update(FrameInfo& frameInfo, GlobalUbo& ubo);
         void render(FrameInfo& frameInfo);
         
         private:
