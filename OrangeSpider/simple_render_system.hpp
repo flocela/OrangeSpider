@@ -20,7 +20,7 @@ namespace lve
         SimpleRenderSystem(const SimpleRenderSystem& o) = delete;
         SimpleRenderSystem& operator=(const SimpleRenderSystem& o) = delete;
         
-        void renderGameObjects(FrameInfo& frameInfo, std::vector<LveGameObject>& gameObjects);
+        void renderGameObjects(FrameInfo& frameInfo);
         
         private:
         
