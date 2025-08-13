@@ -92,8 +92,8 @@ namespace lve
         
         
         // Initialize VkPipelineVertexInputStateCreateInfo.
-        auto bindingDescriptions = LveModel::Vertex::createBindingDescriptions();
-        auto attributeDescriptions = LveModel::Vertex::createAttributeDescriptions();
+        auto& bindingDescriptions = lvePipelineCI.bindingDescriptions;
+        auto& attributeDescriptions = lvePipelineCI.attributeDescriptions;
         vertexInputInfo.sType = VK_STRUCTURE_TYPE_PIPELINE_VERTEX_INPUT_STATE_CREATE_INFO;
         vertexInputInfo.vertexAttributeDescriptionCount = static_cast<uint32_t>(attributeDescriptions.size());
         vertexInputInfo.vertexBindingDescriptionCount   = static_cast<uint32_t>(bindingDescriptions.size());
@@ -233,6 +233,9 @@ namespace lve
         configInfo.dynamicStateInfo.pDynamicStates = configInfo.dynamicStateEnables.data();
         configInfo.dynamicStateInfo.dynamicStateCount = static_cast<uint32_t>(configInfo.dynamicStateEnables.size());
         configInfo.dynamicStateInfo.flags = 0;
+        
+        configInfo.bindingDescriptions = LveModel::Vertex::createBindingDescriptions();
+        configInfo.attributeDescriptions = LveModel::Vertex::createAttributeDescriptions();
     }
 
 }

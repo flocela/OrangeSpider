@@ -10,10 +10,10 @@
 #include "lve_descriptors.hpp"
 #include <memory>
 #include <vector>
-//
+
 namespace lve
 {
-    
+
     class FirstApp
     {
         public:
