@@ -49,6 +49,7 @@ namespace lve
         
         void bind(VkCommandBuffer commandBuffer);
         static void defaultPipelineConfigInfo(LvePipelineConfigInfo& configInfo);
+        static void enableAlphaBlending(LvePipelineConfigInfo& configInfo);
         
         
         private:
